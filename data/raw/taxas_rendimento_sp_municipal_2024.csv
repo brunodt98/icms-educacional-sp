@@ -1,0 +1,643 @@
+codigo_ibge,municipio,localizacao,rede,taxa_reprovacao_anos_iniciais,taxa_reprovacao_2ano,taxa_reprovacao_5ano,taxa_abandono_anos_iniciais,taxa_abandono_2ano,taxa_abandono_5ano
+3500105.0,Adamantina,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3500204.0,Adolfo,Total,Municipal,5.7,0.0,1.5,0.0,0.0,0.0
+3500303.0,Aguaí,Total,Municipal,1.6,0.6,0.6,0.0,0.0,0.0
+3500402.0,Águas da Prata,Total,Municipal,2.7,0.0,2.6,0.0,0.0,0.0
+3500501.0,Águas de Lindóia,Total,Municipal,7.8,11.3,10.7,0.0,0.0,0.0
+3500550.0,Águas de Santa Bárbara,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3500600.0,Águas de São Pedro,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3500709.0,Agudos,Total,Municipal,3.3,1.1,2.5,0.0,0.0,0.0
+3500758.0,Alambari,Total,Municipal,3.6,6.2,0.0,0.0,0.0,0.0
+3500907.0,Altair,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3501004.0,Altinópolis,Total,Municipal,0.1,0.0,0.6,0.0,0.0,0.0
+3501103.0,Alto Alegre,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3501152.0,Alumínio,Total,Municipal,2.2,2.9,2.2,0.2,0.0,0.0
+3501202.0,Álvares Florence,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3501301.0,Álvares Machado,Total,Municipal,0.9,0.0,0.4,0.0,0.0,0.0
+3501400.0,Álvaro de Carvalho,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3501509.0,Alvinlândia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3501608.0,Americana,Total,Municipal,0.7,0.0,0.8,0.1,0.0,0.1
+3501707.0,Américo Brasiliense,Total,Municipal,0.3,0.0,0.3,0.0,0.0,0.0
+3501806.0,Américo de Campos,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3501905.0,Amparo,Total,Municipal,0.0,0.0,0.2,0.0,0.0,0.0
+3502002.0,Analândia,Total,Municipal,2.1,0.0,1.8,0.0,0.0,0.0
+3502101.0,Andradina,Total,Municipal,0.1,0.4,0.0,0.0,0.0,0.0
+3502200.0,Angatuba,Total,Municipal,1.0,0.0,1.4,0.1,0.0,0.0
+3502309.0,Anhembi,Total,Municipal,0.5,2.5,0.0,1.0,1.3,1.2
+3502408.0,Anhumas,Total,Municipal,0.5,0.0,0.0,0.0,0.0,0.0
+3502507.0,Aparecida,Total,Municipal,6.8,7.7,2.7,0.1,0.0,0.0
+3502606.0,Aparecida d'Oeste,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3502705.0,Apiaí,Total,Municipal,0.7,0.0,0.7,0.0,0.0,0.0
+3502754.0,Araçariguama,Total,Municipal,2.6,2.1,0.6,0.5,0.0,1.0
+3502804.0,Araçatuba,Total,Municipal,0.7,0.3,0.3,0.1,0.0,0.2
+3502903.0,Araçoiaba da Serra,Total,Municipal,0.4,0.0,0.5,0.3,0.2,0.7
+3503000.0,Aramina,Total,Municipal,1.0,5.6,0.0,0.0,0.0,0.0
+3503109.0,Arandu,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3503158.0,Arapeí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3503208.0,Araraquara,Total,Municipal,0.5,0.3,0.9,0.4,0.2,0.4
+3503307.0,Araras,Total,Municipal,1.7,0.5,2.4,0.2,0.3,0.0
+3503356.0,Arco-Íris,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3503406.0,Arealva,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3503505.0,Areias,Total,Municipal,1.7,0.0,2.3,0.0,0.0,0.0
+3503604.0,Areiópolis,Total,Municipal,2.8,0.0,1.4,0.4,0.0,0.7
+3503703.0,Ariranha,Total,Municipal,1.0,0.0,1.1,0.0,0.0,0.0
+3503802.0,Artur Nogueira,Total,Municipal,0.8,1.5,0.2,0.0,0.0,0.0
+3503901.0,Arujá,Total,Municipal,0.3,0.1,0.3,0.0,0.0,0.0
+3503950.0,Aspásia,Total,Municipal,0.0,,,0.0,,
+3504008.0,Assis,Total,Municipal,0.5,0.3,0.3,0.0,0.0,0.0
+3504107.0,Atibaia,Total,Municipal,0.0,0.0,0.1,0.0,0.0,0.0
+3504206.0,Auriflama,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3504305.0,Avaí,Total,Municipal,0.4,0.0,1.8,0.0,0.0,0.0
+3504404.0,Avanhandava,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3504503.0,Avaré,Total,Municipal,0.3,0.0,0.4,0.1,0.0,0.0
+3504602.0,Bady Bassitt,Total,Municipal,1.2,0.0,0.3,0.0,0.0,0.0
+3504701.0,Balbinos,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3504800.0,Bálsamo,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3504909.0,Bananal,Total,Municipal,4.6,0.0,5.5,0.2,0.0,0.0
+3505005.0,Barão de Antonina,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3505104.0,Barbosa,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3505203.0,Bariri,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3505302.0,Barra Bonita,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3505351.0,Barra do Chapéu,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3505401.0,Barra do Turvo,Total,Municipal,1.5,1.0,1.1,0.0,0.0,0.0
+3505500.0,Barretos,Total,Municipal,2.4,4.6,0.1,0.0,0.0,0.0
+3505609.0,Barrinha,Total,Municipal,0.3,0.5,0.5,0.0,0.0,0.0
+3505708.0,Barueri,Total,Municipal,1.5,1.9,1.5,0.0,0.0,0.0
+3505807.0,Bastos,Total,Municipal,0.4,0.4,0.0,0.1,0.0,0.4
+3505906.0,Batatais,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3506003.0,Bauru,Total,Municipal,2.2,3.7,1.0,0.1,0.2,0.0
+3506102.0,Bebedouro,Total,Municipal,0.3,0.0,0.0,0.0,0.0,0.0
+3506201.0,Bento de Abreu,Total,Municipal,1.9,0.0,8.8,0.0,0.0,0.0
+3506300.0,Bernardino de Campos,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3506359.0,Bertioga,Total,Municipal,0.2,0.5,0.4,0.1,0.0,0.1
+3506409.0,Bilac,Total,Municipal,2.2,0.0,0.0,0.0,0.0,0.0
+3506508.0,Birigui,Total,Municipal,0.1,0.3,0.1,0.0,0.0,0.0
+3506607.0,Biritiba Mirim,Total,Municipal,2.6,0.8,0.0,0.0,0.0,0.0
+3506706.0,Boa Esperança do Sul,Total,Municipal,0.5,1.3,0.5,0.0,0.0,0.0
+3506805.0,Bocaina,Total,Municipal,0.4,0.0,1.8,0.2,0.0,0.0
+3506904.0,Bofete,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3507001.0,Boituva,Total,Municipal,0.3,0.0,0.5,0.1,0.0,0.2
+3507100.0,Bom Jesus dos Perdões,Total,Municipal,0.1,0.3,0.0,0.0,0.0,0.0
+3507159.0,Bom Sucesso de Itararé,Total,Municipal,1.1,0.0,0.0,0.0,0.0,0.0
+3507209.0,Borá,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3507308.0,Boracéia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3507407.0,Borborema,Total,Municipal,0.0,0.0,,0.0,0.0,
+3507456.0,Borebi,Total,Municipal,4.3,0.0,1.9,0.0,0.0,0.0
+3507506.0,Botucatu,Total,Municipal,0.4,0.1,0.1,0.2,0.1,0.5
+3507605.0,Bragança Paulista,Total,Municipal,3.2,1.7,1.1,0.0,0.0,0.0
+3507704.0,Braúna,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3507753.0,Brejo Alegre,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3507803.0,Brodowski,Total,Municipal,1.5,1.9,1.1,0.0,0.0,0.0
+3507902.0,Brotas,Total,Municipal,0.0,0.0,0.0,0.1,0.0,0.0
+3508009.0,Buri,Total,Municipal,0.9,0.0,0.3,0.0,0.0,0.0
+3508108.0,Buritama,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3508207.0,Buritizal,Total,Municipal,2.0,7.3,0.0,0.0,0.0,0.0
+3508306.0,Cabrália Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3508405.0,Cabreúva,Total,Municipal,0.3,0.6,0.0,0.1,0.0,0.4
+3508504.0,Caçapava,Total,Municipal,3.4,1.3,2.5,0.0,0.0,0.0
+3508603.0,Cachoeira Paulista,Total,Municipal,1.7,0.4,2.5,0.0,0.0,0.0
+3508702.0,Caconde,Total,Municipal,0.7,0.6,0.7,0.0,0.0,0.0
+3508801.0,Cafelândia,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3508900.0,Caiabu,Total,Municipal,1.1,0.0,0.0,0.0,0.0,0.0
+3509007.0,Caieiras,Total,Municipal,0.6,0.0,0.4,0.0,0.0,0.0
+3509106.0,Caiuá,Total,Municipal,1.8,0.0,2.8,0.0,0.0,0.0
+3509205.0,Cajamar,Total,Municipal,0.3,0.1,0.6,0.1,0.0,0.1
+3509254.0,Cajati,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3509304.0,Cajobi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3509403.0,Cajuru,Total,Municipal,0.3,0.0,1.1,0.1,0.0,0.0
+3509452.0,Campina do Monte Alegre,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3509502.0,Campinas,Total,Municipal,1.7,1.1,2.5,0.1,0.1,0.3
+3509601.0,Campo Limpo Paulista,Total,Municipal,0.6,0.3,0.6,0.0,0.1,0.0
+3509700.0,Campos do Jordão,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3509809.0,Campos Novos Paulista,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3509908.0,Cananéia,Total,Municipal,2.2,0.7,0.0,0.0,0.0,0.0
+3509957.0,Canas,Total,Municipal,1.9,4.7,1.2,0.0,0.0,0.0
+3510005.0,Cândido Mota,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3510104.0,Cândido Rodrigues,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3510153.0,Canitar,Total,Municipal,0.0,0.0,0.0,0.2,0.0,0.0
+3510203.0,Capão Bonito,Total,Municipal,0.2,0.0,0.2,0.0,0.0,0.0
+3510302.0,Capela do Alto,Total,Municipal,0.3,0.0,0.0,0.2,0.7,0.0
+3510401.0,Capivari,Total,Municipal,2.7,6.0,0.0,0.0,0.0,0.0
+3510500.0,Caraguatatuba,Total,Municipal,0.4,0.0,0.2,0.0,0.0,0.1
+3510609.0,Carapicuíba,Total,Municipal,0.3,0.4,0.5,0.3,0.8,0.0
+3510708.0,Cardoso,Total,Municipal,0.7,1.0,0.0,0.0,0.0,0.0
+3510807.0,Casa Branca,Total,Municipal,0.6,0.0,0.0,0.1,0.4,0.0
+3510906.0,Cássia dos Coqueiros,Total,Municipal,3.3,2.7,2.4,0.0,0.0,0.0
+3511003.0,Castilho,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3511102.0,Catanduva,Total,Municipal,0.3,0.1,0.6,0.0,0.0,0.0
+3511201.0,Catiguá,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3511300.0,Cedral,Total,Municipal,1.0,0.0,1.4,0.0,0.0,0.0
+3511409.0,Cerqueira César,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3511508.0,Cerquilho,Total,Municipal,1.0,0.2,0.2,0.0,0.0,0.0
+3511607.0,Cesário Lange,Total,Municipal,4.1,9.9,0.7,0.2,0.0,0.0
+3511706.0,Charqueada,Total,Municipal,0.4,0.5,1.5,0.0,0.0,0.0
+3511904.0,Clementina,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3512001.0,Colina,Total,Municipal,0.2,0.0,0.5,0.0,0.0,0.0
+3512100.0,Colômbia,Total,Municipal,2.2,3.5,0.8,0.0,0.0,0.0
+3512209.0,Conchal,Total,Municipal,3.0,0.5,5.3,0.1,0.0,0.3
+3512308.0,Conchas,Total,Municipal,0.5,0.0,0.6,0.0,0.0,0.0
+3512407.0,Cordeirópolis,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3512506.0,Coroados,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3512605.0,Coronel Macedo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3512704.0,Corumbataí,Total,Municipal,3.2,0.0,5.7,0.0,0.0,0.0
+3512803.0,Cosmópolis,Total,Municipal,3.6,0.9,3.6,0.0,0.0,0.0
+3512902.0,Cosmorama,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3513009.0,Cotia,Total,Municipal,2.1,0.8,2.8,0.1,0.1,0.3
+3513108.0,Cravinhos,Total,Municipal,4.6,5.1,1.5,0.6,0.3,0.5
+3513207.0,Cristais Paulista,Total,Municipal,2.8,0.0,1.6,0.0,0.0,0.0
+3513306.0,Cruzália,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3513405.0,Cruzeiro,Total,Municipal,0.8,0.2,1.0,0.1,0.2,0.0
+3513504.0,Cubatão,Total,Municipal,4.5,0.7,5.7,0.1,0.0,0.3
+3513603.0,Cunha,Total,Municipal,2.1,0.0,0.0,0.0,0.0,0.0
+3513702.0,Descalvado,Total,Municipal,0.3,0.0,0.7,0.0,0.0,0.0
+3513801.0,Diadema,Total,Municipal,0.1,0.2,0.3,0.1,0.1,0.2
+3513850.0,Dirce Reis,Total,Municipal,0.0,0.0,,0.0,0.0,
+3513900.0,Divinolândia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3514007.0,Dobrada,Total,Municipal,0.0,,,0.0,,
+3514106.0,Dois Córregos,Total,Municipal,0.0,0.0,0.0,0.1,0.0,0.0
+3514205.0,Dolcinópolis,Total,Municipal,1.4,0.0,0.0,0.0,0.0,0.0
+3514304.0,Dourado,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3514403.0,Dracena,Total,Municipal,0.4,0.3,0.2,0.0,0.0,0.0
+3514502.0,Duartina,Total,Municipal,0.3,0.0,1.7,0.0,0.0,0.0
+3514601.0,Dumont,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3514700.0,Echaporã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3514809.0,Eldorado,Total,Municipal,2.4,0.0,0.0,0.0,0.0,0.0
+3514908.0,Elias Fausto,Total,Municipal,2.9,0.9,0.5,0.0,0.0,0.0
+3514924.0,Elisiário,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3514957.0,Embaúba,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515004.0,Embu das Artes,Total,Municipal,0.0,0.0,0.0,0.2,0.1,0.2
+3515103.0,Embu-Guaçu,Total,Municipal,0.0,0.0,0.0,0.1,0.0,0.0
+3515129.0,Emilianópolis,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515152.0,Engenheiro Coelho,Total,Municipal,6.5,12.5,1.0,0.3,0.5,0.5
+3515186.0,Espírito Santo do Pinhal,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3515194.0,Espírito Santo do Turvo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515202.0,Estrela d'Oeste,Total,Municipal,1.6,1.2,3.7,0.0,0.0,0.0
+3515301.0,Estrela do Norte,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515350.0,Euclides da Cunha Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515400.0,Fartura,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515509.0,Fernandópolis,Total,Municipal,1.4,0.0,0.3,0.0,0.0,0.0
+3515608.0,Fernando Prestes,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515657.0,Fernão,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515707.0,Ferraz de Vasconcelos,Total,Municipal,0.2,0.1,0.0,0.1,0.0,0.0
+3515806.0,Flora Rica,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3515905.0,Floreal,Total,Municipal,3.0,3.6,0.0,0.0,0.0,0.0
+3516002.0,Flórida Paulista,Total,Municipal,1.6,0.0,1.0,0.0,0.0,0.0
+3516101.0,Florínea,Total,Municipal,0.0,,,0.0,,
+3516200.0,Franca,Total,Municipal,0.8,0.0,0.6,0.0,0.0,0.0
+3516309.0,Francisco Morato,Total,Municipal,0.0,0.0,0.0,0.1,0.1,0.2
+3516408.0,Franco da Rocha,Total,Municipal,0.0,0.1,0.0,0.0,0.0,0.0
+3516507.0,Gabriel Monteiro,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3516606.0,Gália,Total,Municipal,0.3,0.0,1.6,0.0,0.0,0.0
+3516705.0,Garça,Total,Municipal,0.5,0.3,0.2,0.0,0.0,0.0
+3516804.0,Gastão Vidigal,Total,Municipal,0.0,0.0,,0.0,0.0,
+3516853.0,Gavião Peixoto,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3516903.0,General Salgado,Total,Municipal,0.6,0.0,0.9,0.0,0.0,0.0
+3517000.0,Getulina,Total,Municipal,0.2,1.4,0.0,0.0,0.0,0.0
+3517109.0,Glicério,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3517208.0,Guaiçara,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3517307.0,Guaimbê,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3517406.0,Guaíra,Total,Municipal,0.1,0.0,0.3,0.0,0.0,0.0
+3517505.0,Guapiaçu,Total,Municipal,3.6,0.0,2.1,0.0,0.0,0.0
+3517604.0,Guapiara,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3517703.0,Guará,Total,Municipal,0.3,0.5,0.0,0.0,0.0,0.0
+3517802.0,Guaraçaí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3517901.0,Guaraci,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3518008.0,Guarani d'Oeste,Total,Municipal,1.0,0.0,0.0,0.0,0.0,0.0
+3518107.0,Guarantã,Total,Municipal,0.3,0.0,0.0,0.0,0.0,0.0
+3518206.0,Guararapes,Total,Municipal,1.0,0.0,0.4,0.0,0.0,0.0
+3518305.0,Guararema,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3518404.0,Guaratinguetá,Total,Municipal,1.5,0.1,1.6,0.1,0.2,0.2
+3518503.0,Guareí,Total,Municipal,1.9,0.6,0.6,0.2,0.0,0.0
+3518602.0,Guariba,Total,Municipal,0.1,0.2,0.0,0.2,0.0,0.0
+3518701.0,Guarujá,Total,Municipal,1.7,0.7,1.7,0.2,0.4,0.2
+3518800.0,Guarulhos,Total,Municipal,1.6,1.6,1.9,0.3,0.2,0.2
+3518859.0,Guatapará,Total,Municipal,1.6,0.0,0.0,0.7,1.3,1.3
+3518909.0,Guzolândia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3519006.0,Herculândia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3519055.0,Holambra,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3519071.0,Hortolândia,Total,Municipal,0.6,0.1,1.1,0.0,0.0,0.0
+3519105.0,Iacanga,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3519204.0,Iacri,Total,Municipal,0.0,,,0.0,,
+3519253.0,Iaras,Total,Municipal,0.7,0.0,2.3,0.0,0.0,0.0
+3519303.0,Ibaté,Total,Municipal,1.4,0.5,1.8,0.0,0.0,0.0
+3519402.0,Ibirá,Total,Municipal,0.2,0.8,0.0,0.0,0.0,0.0
+3519501.0,Ibirarema,Total,Municipal,0.3,1.4,0.0,0.0,0.0,0.0
+3519600.0,Ibitinga,Total,Municipal,0.6,0.2,0.0,0.1,0.0,0.0
+3519709.0,Ibiúna,Total,Municipal,1.5,0.7,1.2,0.2,0.4,0.2
+3519808.0,Icém,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3519907.0,Iepê,Total,Municipal,0.2,0.0,1.3,0.0,0.0,0.0
+3520004.0,Igaraçu do Tietê,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3520103.0,Igarapava,Total,Municipal,1.8,0.4,1.7,0.2,0.0,0.0
+3520202.0,Igaratá,Total,Municipal,2.6,7.8,0.6,0.0,0.0,0.0
+3520301.0,Iguape,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3520400.0,Ilhabela,Total,Municipal,0.7,0.0,1.0,0.0,0.0,0.0
+3520426.0,Ilha Comprida,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3520442.0,Ilha Solteira,Total,Municipal,1.1,0.9,0.0,0.0,0.0,0.0
+3520509.0,Indaiatuba,Total,Municipal,1.1,0.0,0.6,0.0,0.0,0.0
+3520608.0,Indiana,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3520707.0,Indiaporã,Total,Municipal,3.7,0.0,2.2,0.0,0.0,0.0
+3520806.0,Inúbia Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3520905.0,Ipaussu,Total,Municipal,0.8,0.0,0.0,0.0,0.0,0.0
+3521002.0,Iperó,Total,Municipal,1.2,0.0,1.1,0.1,0.0,0.2
+3521101.0,Ipeúna,Total,Municipal,0.2,1.0,0.0,0.0,0.0,0.0
+3521150.0,Ipiguá,Total,Municipal,0.0,0.0,0.0,0.2,0.0,1.2
+3521200.0,Iporanga,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3521309.0,Ipuã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3521408.0,Iracemápolis,Total,Municipal,0.0,0.0,0.0,0.1,0.0,0.4
+3521507.0,Irapuã,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3521606.0,Irapuru,Total,Municipal,1.4,6.0,0.0,0.0,0.0,0.0
+3521804.0,Itaí,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3521903.0,Itajobi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3522000.0,Itaju,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3522109.0,Itanhaém,Total,Municipal,1.8,5.6,2.7,0.0,0.0,0.0
+3522158.0,Itaoca,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3522208.0,Itapecerica da Serra,Total,Municipal,1.3,1.4,0.6,0.3,0.3,0.4
+3522307.0,Itapetininga,Total,Municipal,0.6,0.4,0.6,0.1,0.1,0.1
+3522406.0,Itapeva,Total,Municipal,0.8,0.4,0.5,0.0,0.0,0.0
+3522505.0,Itapevi,Total,Municipal,0.0,0.0,0.0,0.1,0.1,0.1
+3522604.0,Itapira,Total,Municipal,1.2,0.2,0.2,0.1,0.0,0.1
+3522653.0,Itapirapuã Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3522703.0,Itápolis,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3522802.0,Itaporanga,Total,Municipal,0.1,0.0,0.6,0.0,0.0,0.0
+3522901.0,Itapuí,Total,Municipal,1.0,1.2,0.0,0.2,0.0,0.0
+3523008.0,Itapura,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3523107.0,Itaquaquecetuba,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3523206.0,Itararé,Total,Municipal,1.4,0.4,1.7,0.0,0.0,0.0
+3523305.0,Itariri,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3523404.0,Itatiba,Total,Municipal,3.6,3.0,3.8,0.0,0.0,0.0
+3523503.0,Itatinga,Total,Municipal,1.6,0.0,0.0,0.0,0.0,0.0
+3523602.0,Itirapina,Total,Municipal,0.4,0.6,0.0,0.0,0.0,0.0
+3523701.0,Itirapuã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3523800.0,Itobi,Total,Municipal,0.0,,,0.0,,
+3523909.0,Itu,Total,Municipal,0.6,0.7,0.7,0.0,0.0,0.0
+3524006.0,Itupeva,Total,Municipal,0.2,0.1,0.3,0.0,0.0,0.0
+3524105.0,Ituverava,Total,Municipal,2.7,1.0,0.7,0.0,0.0,0.0
+3524204.0,Jaborandi,Total,Municipal,0.8,1.4,2.4,0.0,0.0,0.0
+3524303.0,Jaboticabal,Total,Municipal,1.4,2.4,0.7,0.1,0.0,0.2
+3524402.0,Jacareí,Total,Municipal,1.7,2.5,0.8,0.1,0.0,0.1
+3524501.0,Jaci,Total,Municipal,0.6,0.0,1.1,0.0,0.0,0.0
+3524600.0,Jacupiranga,Total,Municipal,4.4,0.0,8.1,0.0,0.0,0.0
+3524709.0,Jaguariúna,Total,Municipal,0.3,0.2,0.6,0.0,0.0,0.0
+3524808.0,Jales,Total,Municipal,1.0,3.2,0.0,0.0,0.2,0.0
+3524907.0,Jambeiro,Total,Municipal,5.5,0.0,8.9,0.0,0.0,0.0
+3525003.0,Jandira,Total,Municipal,0.3,0.6,0.4,0.3,0.4,0.0
+3525102.0,Jardinópolis,Total,Municipal,2.9,0.4,5.4,0.6,1.1,0.6
+3525201.0,Jarinu,Total,Municipal,0.3,0.0,0.4,0.0,0.0,0.0
+3525300.0,Jaú,Total,Municipal,0.1,0.2,0.0,0.0,0.0,0.0
+3525409.0,Jeriquara,Total,Municipal,3.1,0.0,0.0,0.0,0.0,0.0
+3525508.0,Joanópolis,Total,Municipal,0.3,0.0,0.0,0.0,0.0,0.0
+3525607.0,João Ramalho,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3525706.0,José Bonifácio,Total,Municipal,0.8,0.0,0.0,0.0,0.0,0.0
+3525805.0,Júlio Mesquita,Total,Municipal,0.7,0.0,0.0,0.0,0.0,0.0
+3525854.0,Jumirim,Total,Municipal,4.4,8.7,0.0,0.0,0.0,0.0
+3525904.0,Jundiaí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3526001.0,Junqueirópolis,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3526100.0,Juquiá,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3526209.0,Juquitiba,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3526308.0,Lagoinha,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3526407.0,Laranjal Paulista,Total,Municipal,2.0,3.8,0.6,0.0,0.0,0.0
+3526506.0,Lavínia,Total,Municipal,1.6,0.0,2.2,0.4,0.0,0.0
+3526605.0,Lavrinhas,Total,Municipal,1.2,0.0,0.0,0.0,0.0,0.0
+3526704.0,Leme,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3526803.0,Lençóis Paulista,Total,Municipal,0.9,0.3,0.6,0.0,0.0,0.0
+3526902.0,Limeira,Total,Municipal,0.2,0.0,0.3,0.1,0.0,0.0
+3527009.0,Lindóia,Total,Municipal,1.8,0.0,5.0,0.0,0.0,0.0
+3527108.0,Lins,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3527207.0,Lorena,Total,Municipal,4.6,2.3,5.5,0.0,0.0,0.1
+3527256.0,Lourdes,Total,Municipal,3.2,0.0,4.5,0.0,0.0,0.0
+3527306.0,Louveira,Total,Municipal,0.2,0.1,0.1,0.0,0.0,0.0
+3527405.0,Lucélia,Total,Municipal,0.9,1.9,0.0,0.0,0.0,0.0
+3527504.0,Lucianópolis,Total,Municipal,1.5,0.0,0.0,0.0,0.0,0.0
+3527603.0,Luís Antônio,Total,Municipal,1.9,1.5,1.6,0.0,0.0,0.0
+3527702.0,Luiziânia,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3527801.0,Lupércio,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3527900.0,Lutécia,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3528007.0,Macatuba,Total,Municipal,1.5,2.6,0.5,0.0,0.0,0.0
+3528106.0,Macaubal,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528205.0,Macedônia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528304.0,Magda,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528403.0,Mairinque,Total,Municipal,3.8,3.1,3.1,0.1,0.3,0.0
+3528502.0,Mairiporã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528601.0,Manduri,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528700.0,Marabá Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528809.0,Maracaí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3528858.0,Marapoama,Total,Municipal,0.5,0.0,0.0,0.0,0.0,0.0
+3528908.0,Mariápolis,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3529005.0,Marília,Total,Municipal,1.1,0.6,0.1,0.0,0.0,0.0
+3529104.0,Marinópolis,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3529203.0,Martinópolis,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3529302.0,Matão,Total,Municipal,1.6,0.0,0.4,0.1,0.0,0.0
+3529401.0,Mauá,Total,Municipal,1.4,0.0,10.6,0.1,0.0,0.0
+3529500.0,Mendonça,Total,Municipal,1.3,0.0,0.0,0.0,0.0,0.0
+3529609.0,Meridiano,Total,Municipal,0.8,0.0,0.0,0.0,0.0,0.0
+3529658.0,Mesópolis,Total,Municipal,3.3,0.0,0.0,0.0,0.0,0.0
+3529708.0,Miguelópolis,Total,Municipal,2.6,3.6,2.0,0.5,0.0,0.5
+3529807.0,Mineiros do Tietê,Total,Municipal,1.0,0.9,0.0,0.0,0.0,0.0
+3529906.0,Miracatu,Total,Municipal,1.5,3.0,0.0,0.0,0.0,0.0
+3530003.0,Mira Estrela,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3530102.0,Mirandópolis,Total,Municipal,0.2,0.5,0.5,0.0,0.0,0.0
+3530201.0,Mirante do Paranapanema,Total,Municipal,0.4,0.0,1.0,0.0,0.0,0.0
+3530300.0,Mirassol,Total,Municipal,0.8,0.4,1.3,0.0,0.0,0.0
+3530409.0,Mirassolândia,Total,Municipal,0.7,0.0,0.0,0.0,0.0,0.0
+3530508.0,Mococa,Total,Municipal,5.5,11.5,3.3,0.1,0.3,0.0
+3530607.0,Mogi das Cruzes,Total,Municipal,0.2,0.2,0.2,0.0,0.0,0.0
+3530706.0,Mogi Guaçu,Total,Municipal,1.1,1.3,0.6,0.1,0.1,0.1
+3530805.0,Mogi Mirim,Total,Municipal,0.5,0.7,0.5,0.0,0.0,0.0
+3530904.0,Mombuca,Total,Municipal,4.2,0.0,11.3,0.0,0.0,0.0
+3531001.0,Monções,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3531100.0,Mongaguá,Total,Municipal,2.3,6.3,3.0,0.1,0.0,0.2
+3531209.0,Monte Alegre do Sul,Total,Municipal,7.3,18.7,1.0,0.0,0.0,0.0
+3531308.0,Monte Alto,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3531407.0,Monte Aprazível,Total,Municipal,0.3,0.5,0.5,0.0,0.0,0.0
+3531506.0,Monte Azul Paulista,Total,Municipal,0.6,0.6,0.0,0.0,0.0,0.0
+3531605.0,Monte Castelo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3531704.0,Monteiro Lobato,Total,Municipal,3.7,1.8,0.0,0.0,0.0,0.0
+3531803.0,Monte Mor,Total,Municipal,6.9,11.8,3.5,0.0,0.2,0.0
+3531902.0,Morro Agudo,Total,Municipal,2.7,6.7,0.8,0.0,0.0,0.0
+3532009.0,Morungaba,Total,Municipal,0.5,0.0,1.9,0.0,0.0,0.0
+3532058.0,Motuca,Total,Municipal,4.0,0.0,0.0,0.0,0.0,0.0
+3532108.0,Murutinga do Sul,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532157.0,Nantes,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3532207.0,Narandiba,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3532306.0,Natividade da Serra,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532405.0,Nazaré Paulista,Total,Municipal,1.3,1.3,5.2,0.0,0.0,0.0
+3532504.0,Neves Paulista,Total,Municipal,0.9,0.0,3.3,0.0,0.0,0.0
+3532603.0,Nhandeara,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532702.0,Nipoã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532801.0,Nova Aliança,Total,Municipal,3.4,5.8,1.0,0.0,0.0,0.0
+3532827.0,Nova Campina,Total,Municipal,0.6,0.0,0.7,0.0,0.0,0.0
+3532843.0,Nova Canaã Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532868.0,Nova Castilho,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3532900.0,Nova Europa,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3533007.0,Nova Granada,Total,Municipal,0.3,0.0,0.9,0.0,0.0,0.0
+3533106.0,Nova Guataporanga,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3533205.0,Nova Independência,Total,Municipal,2.1,2.1,0.0,0.0,0.0,0.0
+3533254.0,Novais,Total,Municipal,1.1,0.0,0.0,0.0,0.0,0.0
+3533304.0,Nova Luzitânia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3533403.0,Nova Odessa,Total,Municipal,1.2,2.8,0.5,0.0,0.0,0.0
+3533502.0,Novo Horizonte,Total,Municipal,0.1,0.0,0.0,0.1,0.5,0.0
+3533601.0,Nuporanga,Total,Municipal,1.8,2.4,0.0,0.0,0.0,0.0
+3533700.0,Ocauçu,Total,Municipal,0.4,0.0,1.6,0.0,0.0,0.0
+3533809.0,Óleo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3533908.0,Olímpia,Total,Municipal,0.6,0.5,0.4,0.0,0.0,0.2
+3534005.0,Onda Verde,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534104.0,Oriente,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534203.0,Orindiúva,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534302.0,Orlândia,Total,Municipal,0.7,0.0,0.5,0.0,0.0,0.0
+3534401.0,Osasco,Total,Municipal,0.7,0.6,0.6,0.1,0.1,0.1
+3534500.0,Oscar Bressane,Total,Municipal,0.8,3.8,0.0,0.0,0.0,0.0
+3534609.0,Osvaldo Cruz,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534708.0,Ourinhos,Total,Municipal,3.3,0.8,1.7,0.0,0.0,0.0
+3534757.0,Ouroeste,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534807.0,Ouro Verde,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3534906.0,Pacaembu,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3535002.0,Palestina,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3535101.0,Palmares Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3535200.0,Palmeira d'Oeste,Total,Municipal,0.8,0.0,1.5,0.0,0.0,0.0
+3535309.0,Palmital,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3535408.0,Panorama,Total,Municipal,1.1,0.6,0.0,0.0,0.0,0.0
+3535507.0,Paraguaçu Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3535606.0,Paraibuna,Total,Municipal,2.3,0.5,3.3,0.0,0.0,0.0
+3535705.0,Paraíso,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3535804.0,Paranapanema,Total,Municipal,0.8,0.4,0.0,0.0,0.0,0.0
+3535903.0,Paranapuã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3536000.0,Parapuã,Total,Municipal,0.7,0.0,0.0,0.0,0.0,0.0
+3536109.0,Pardinho,Total,Municipal,1.2,0.0,0.0,0.0,0.0,0.0
+3536208.0,Pariquera-Açu,Total,Municipal,0.3,0.9,0.4,0.0,0.0,0.0
+3536257.0,Parisi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3536307.0,Patrocínio Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3536406.0,Paulicéia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3536505.0,Paulínia,Total,Municipal,0.9,0.3,1.1,0.0,0.0,0.0
+3536570.0,Paulistânia,Total,Municipal,0.7,0.0,3.3,0.0,0.0,0.0
+3536604.0,Paulo de Faria,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3536703.0,Pederneiras,Total,Municipal,4.0,7.9,1.2,0.2,0.0,0.4
+3536802.0,Pedra Bela,Total,Municipal,4.3,4.3,6.5,0.0,0.0,0.0
+3536901.0,Pedranópolis,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3537008.0,Pedregulho,Total,Municipal,3.8,0.5,1.8,0.1,0.0,0.0
+3537107.0,Pedreira,Total,Municipal,0.1,0.0,0.4,0.0,0.0,0.0
+3537156.0,Pedrinhas Paulista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3537206.0,Pedro de Toledo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3537305.0,Penápolis,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3537404.0,Pereira Barreto,Total,Municipal,0.1,0.0,0.4,0.0,0.0,0.0
+3537503.0,Pereiras,Total,Municipal,3.1,9.2,0.0,0.0,0.0,0.0
+3537602.0,Peruíbe,Total,Municipal,1.7,0.0,2.3,0.0,0.0,0.0
+3537701.0,Piacatu,Total,Municipal,0.3,0.0,1.4,0.0,0.0,0.0
+3537800.0,Piedade,Total,Municipal,0.2,0.0,0.2,0.0,0.0,0.0
+3537909.0,Pilar do Sul,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3538006.0,Pindamonhangaba,Total,Municipal,0.2,0.0,0.2,0.1,0.1,0.0
+3538105.0,Pindorama,Total,Municipal,0.3,0.0,0.7,0.3,0.8,0.0
+3538204.0,Pinhalzinho,Total,Municipal,0.6,0.0,0.0,0.0,0.0,0.0
+3538303.0,Piquerobi,Total,Municipal,0.5,0.0,2.7,0.0,0.0,0.0
+3538501.0,Piquete,Total,Municipal,0.5,2.0,0.0,0.0,0.0,0.0
+3538600.0,Piracaia,Total,Municipal,2.2,0.0,0.9,0.1,0.0,0.0
+3538709.0,Piracicaba,Total,Municipal,1.1,0.4,2.0,0.2,0.1,0.2
+3538808.0,Piraju,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3538907.0,Pirajuí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3539004.0,Pirangi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3539103.0,Pirapora do Bom Jesus,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3539202.0,Pirapozinho,Total,Municipal,0.1,0.0,0.4,0.0,0.0,0.0
+3539301.0,Pirassununga,Total,Municipal,0.8,0.2,0.0,0.0,0.0,0.0
+3539400.0,Piratininga,Total,Municipal,0.6,0.0,0.8,0.0,0.0,0.0
+3539509.0,Pitangueiras,Total,Municipal,4.2,6.2,0.7,0.1,0.0,0.2
+3539608.0,Planalto,Total,Municipal,0.7,1.8,1.7,0.0,0.0,0.0
+3539707.0,Platina,Total,Municipal,0.0,0.0,0.0,0.5,0.0,0.0
+3539806.0,Poá,Total,Municipal,0.7,1.4,0.4,0.1,0.0,0.2
+3539905.0,Poloni,Total,Municipal,0.0,,,0.0,,
+3540002.0,Pompéia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3540101.0,Pongaí,Total,Municipal,1.5,0.0,0.0,0.0,0.0,0.0
+3540200.0,Pontal,Total,Municipal,0.1,0.0,0.5,0.1,0.2,0.0
+3540259.0,Pontalinda,Total,Municipal,1.2,0.0,0.0,0.0,0.0,0.0
+3540309.0,Pontes Gestal,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3540408.0,Populina,Total,Municipal,2.6,2.1,2.0,0.0,0.0,0.0
+3540507.0,Porangaba,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3540606.0,Porto Feliz,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3540705.0,Porto Ferreira,Total,Municipal,3.5,6.8,0.5,0.0,0.0,0.2
+3540754.0,Potim,Total,Municipal,4.7,0.9,4.2,0.2,0.4,0.0
+3540804.0,Potirendaba,Total,Municipal,0.6,0.0,0.4,0.0,0.0,0.0
+3540853.0,Pracinha,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3540903.0,Pradópolis,Total,Municipal,2.4,0.0,2.6,0.0,0.0,0.0
+3541000.0,Praia Grande,Total,Municipal,3.2,5.8,2.1,0.0,0.0,0.0
+3541059.0,Pratânia,Total,Municipal,0.0,0.0,0.0,0.2,0.0,0.9
+3541208.0,Presidente Bernardes,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3541307.0,Presidente Epitácio,Total,Municipal,0.5,0.0,0.0,0.0,0.0,0.0
+3541406.0,Presidente Prudente,Total,Municipal,2.9,0.4,2.7,0.1,0.3,0.0
+3541505.0,Presidente Venceslau,Total,Municipal,0.1,0.4,0.0,0.0,0.0,0.0
+3541604.0,Promissão,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3541653.0,Quadra,Total,Municipal,2.4,4.4,0.0,0.0,0.0,0.0
+3541703.0,Quatá,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3541802.0,Queiroz,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3541901.0,Queluz,Total,Municipal,2.8,0.0,0.9,0.7,1.8,0.0
+3542008.0,Quintana,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3542107.0,Rafard,Total,Municipal,3.7,9.0,0.0,0.0,0.0,0.0
+3542206.0,Rancharia,Total,Municipal,2.3,7.7,2.4,0.0,0.0,0.0
+3542305.0,Redenção da Serra,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3542404.0,Regente Feijó,Total,Municipal,0.7,0.0,0.5,0.0,0.0,0.0
+3542503.0,Reginópolis,Total,Municipal,0.6,0.0,2.7,0.0,0.0,0.0
+3542602.0,Registro,Total,Municipal,1.3,2.6,0.3,0.0,0.0,0.0
+3542701.0,Restinga,Total,Municipal,3.5,0.0,0.9,0.0,0.0,0.0
+3542800.0,Ribeira,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3542909.0,Ribeirão Bonito,Total,Municipal,2.0,0.0,0.0,0.4,0.0,0.0
+3543006.0,Ribeirão Branco,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3543105.0,Ribeirão Corrente,Total,Municipal,1.7,0.0,4.4,0.0,0.0,0.0
+3543204.0,Ribeirão do Sul,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3543238.0,Ribeirão dos Índios,Total,Municipal,2.6,0.0,0.0,0.0,0.0,0.0
+3543253.0,Ribeirão Grande,Total,Municipal,0.2,0.0,0.8,0.0,0.0,0.0
+3543303.0,Ribeirão Pires,Total,Municipal,1.4,0.4,0.9,0.0,0.0,0.0
+3543402.0,Ribeirão Preto,Total,Municipal,0.6,0.5,0.7,0.3,0.1,0.4
+3543501.0,Riversul,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3543600.0,Rifaina,Total,Municipal,3.2,0.0,2.0,0.0,0.0,0.0
+3543709.0,Rincão,Total,Municipal,0.2,0.0,0.0,0.6,0.0,0.0
+3543808.0,Rinópolis,Total,Municipal,0.0,,,0.0,,
+3543907.0,Rio Claro,Total,Municipal,1.6,0.7,2.0,0.0,0.0,0.0
+3544004.0,Rio das Pedras,Total,Municipal,5.0,0.3,3.5,0.1,0.0,0.2
+3544103.0,Rio Grande da Serra,Total,Municipal,1.1,0.0,0.0,0.0,0.0,0.0
+3544202.0,Riolândia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3544251.0,Rosana,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3544301.0,Roseira,Total,Municipal,4.6,1.4,7.0,0.3,0.0,0.6
+3544400.0,Rubiácea,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3544509.0,Rubinéia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3544608.0,Sabino,Total,Municipal,1.5,0.0,0.0,0.0,0.0,0.0
+3544707.0,Sagres,Total,Municipal,0.7,0.0,0.0,0.0,0.0,0.0
+3544806.0,Sales,Total,Municipal,2.2,0.0,0.0,0.0,0.0,0.0
+3544905.0,Sales Oliveira,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3545001.0,Salesópolis,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3545100.0,Salmourão,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3545159.0,Saltinho,Total,Municipal,2.1,9.8,0.0,0.0,0.0,0.0
+3545209.0,Salto,Total,Municipal,0.3,0.2,0.2,0.0,0.0,0.0
+3545308.0,Salto de Pirapora,Total,Municipal,0.9,0.6,1.9,0.0,0.0,0.0
+3545407.0,Salto Grande,Total,Municipal,0.2,0.0,0.0,0.4,0.0,0.0
+3545506.0,Sandovalina,Total,Municipal,1.6,0.0,0.0,0.0,0.0,0.0
+3545605.0,Santa Adélia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3545704.0,Santa Albertina,Total,Municipal,0.0,0.0,0.0,0.3,0.0,0.0
+3545803.0,Santa Bárbara d'Oeste,Total,Municipal,0.8,0.1,0.4,0.0,0.0,0.0
+3546009.0,Santa Branca,Total,Municipal,3.9,10.9,3.2,0.0,0.0,0.0
+3546108.0,Santa Clara d'Oeste,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3546207.0,Santa Cruz da Conceição,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3546256.0,Santa Cruz da Esperança,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3546306.0,Santa Cruz das Palmeiras,Total,Municipal,0.2,0.0,0.6,0.0,0.0,0.0
+3546405.0,Santa Cruz do Rio Pardo,Total,Municipal,0.1,0.7,0.0,0.0,0.0,0.0
+3546504.0,Santa Ernestina,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3546603.0,Santa Fé do Sul,Total,Municipal,0.2,0.0,0.6,0.2,0.0,0.0
+3546702.0,Santa Gertrudes,Total,Municipal,1.0,0.0,0.6,0.0,0.0,0.0
+3546801.0,Santa Isabel,Total,Municipal,2.2,4.2,0.1,0.0,0.0,0.0
+3546900.0,Santa Lúcia,Total,Municipal,1.3,1.0,1.4,0.0,0.0,0.0
+3547007.0,Santa Maria da Serra,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3547106.0,Santa Mercedes,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3547205.0,Santana da Ponte Pensa,Total,Municipal,0.0,,,0.0,,
+3547304.0,Santana de Parnaíba,Total,Municipal,1.2,1.0,0.9,0.0,0.0,0.0
+3547403.0,Santa Rita d'Oeste,Total,Municipal,0.9,0.0,3.3,0.0,0.0,0.0
+3547502.0,Santa Rita do Passa Quatro,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3547601.0,Santa Rosa de Viterbo,Total,Municipal,3.1,1.4,6.7,0.0,0.0,0.0
+3547650.0,Santa Salete,Total,Municipal,0.0,,,0.0,,
+3547700.0,Santo Anastácio,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3547809.0,Santo André,Total,Municipal,0.2,0.0,0.3,0.2,0.2,0.2
+3547908.0,Santo Antônio da Alegria,Total,Municipal,0.5,0.0,0.0,0.0,0.0,0.0
+3548005.0,Santo Antônio de Posse,Total,Municipal,7.3,0.0,8.2,0.1,0.0,0.0
+3548054.0,Santo Antônio do Aracanguá,Total,Municipal,1.1,1.1,0.9,0.0,0.0,0.0
+3548104.0,Santo Antônio do Jardim,Total,Municipal,1.8,0.0,1.7,0.0,0.0,0.0
+3548203.0,Santo Antônio do Pinhal,Total,Municipal,0.4,1.1,0.0,0.2,1.2,0.0
+3548302.0,Santo Expedito,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3548401.0,Santópolis do Aguapeí,Total,Municipal,0.4,1.5,0.0,0.0,0.0,0.0
+3548500.0,Santos,Total,Municipal,1.3,0.2,1.4,0.5,0.5,0.6
+3548609.0,São Bento do Sapucaí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3548708.0,São Bernardo do Campo,Total,Municipal,1.7,0.0,2.5,0.1,0.1,0.1
+3548807.0,São Caetano do Sul,Total,Municipal,0.7,0.1,0.9,0.0,0.0,0.0
+3548906.0,São Carlos,Total,Municipal,1.5,0.5,2.0,0.1,0.0,0.0
+3549003.0,São Francisco,Total,Municipal,0.0,,,0.0,,
+3549102.0,São João da Boa Vista,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3549201.0,São João das Duas Pontes,Total,Municipal,1.5,0.0,0.0,0.0,0.0,0.0
+3549250.0,São João de Iracema,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3549300.0,São João do Pau d'Alho,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3549409.0,São Joaquim da Barra,Total,Municipal,0.8,0.8,0.0,0.0,0.0,0.0
+3549508.0,São José da Bela Vista,Total,Municipal,2.6,0.0,0.0,0.0,0.0,0.0
+3549607.0,São José do Barreiro,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3549706.0,São José do Rio Pardo,Total,Municipal,0.6,0.0,0.5,0.1,0.0,0.0
+3549805.0,São José do Rio Preto,Total,Municipal,1.2,0.3,1.1,0.0,0.1,0.2
+3549904.0,São José dos Campos,Total,Municipal,0.0,0.0,0.1,0.0,0.0,0.0
+3549953.0,São Lourenço da Serra,Total,Municipal,0.6,1.1,0.0,0.0,0.0,0.0
+3550001.0,São Luiz do Paraitinga,Total,Municipal,2.9,0.0,5.6,0.0,0.0,0.0
+3550100.0,São Manuel,Total,Municipal,0.7,0.2,0.2,0.0,0.0,0.0
+3550209.0,São Miguel Arcanjo,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3550308.0,São Paulo,Total,Municipal,0.1,0.0,0.0,0.4,0.4,0.4
+3550407.0,São Pedro,Total,Municipal,3.2,0.3,4.9,0.3,0.0,1.0
+3550506.0,São Pedro do Turvo,Total,Municipal,0.8,0.0,0.0,0.0,0.0,0.0
+3550605.0,São Roque,Total,Municipal,1.8,1.8,1.7,0.0,0.0,0.0
+3550704.0,São Sebastião,Total,Municipal,0.3,0.0,0.5,0.0,0.0,0.0
+3550803.0,São Sebastião da Grama,Total,Municipal,0.4,1.0,0.0,0.0,0.0,0.0
+3550902.0,São Simão,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3551009.0,São Vicente,Total,Municipal,0.9,0.7,1.0,0.3,0.2,0.4
+3551108.0,Sarapuí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3551207.0,Sarutaiá,Total,Municipal,0.4,0.0,2.0,0.0,0.0,0.0
+3551306.0,Sebastianópolis do Sul,Total,Municipal,0.4,0.0,1.8,0.0,0.0,0.0
+3551405.0,Serra Azul,Total,Municipal,1.9,6.2,0.0,0.7,0.9,0.0
+3551504.0,Serrana,Total,Municipal,1.2,0.7,0.8,0.1,0.0,0.0
+3551603.0,Serra Negra,Total,Municipal,0.4,,,0.0,,
+3551702.0,Sertãozinho,Total,Municipal,7.1,12.2,3.7,0.0,0.0,0.0
+3551801.0,Sete Barras,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3551900.0,Severínia,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3552007.0,Silveiras,Total,Municipal,2.6,0.0,5.7,0.0,0.0,0.0
+3552106.0,Socorro,Total,Municipal,0.1,0.3,0.0,0.0,0.0,0.0
+3552205.0,Sorocaba,Total,Municipal,1.1,0.6,0.6,0.1,0.1,0.0
+3552304.0,Sud Mennucci,Total,Municipal,0.2,0.0,1.1,0.0,0.0,0.0
+3552403.0,Sumaré,Total,Municipal,1.8,0.0,0.9,0.3,0.4,0.4
+3552502.0,Suzano,Total,Municipal,0.3,0.2,0.1,0.1,0.1,0.0
+3552551.0,Suzanápolis,Total,Municipal,2.4,5.0,0.0,0.0,0.0,0.0
+3552601.0,Tabapuã,Total,Municipal,0.2,0.0,0.7,0.0,0.0,0.0
+3552700.0,Tabatinga,Total,Municipal,0.1,0.0,0.7,0.0,0.0,0.0
+3552809.0,Taboão da Serra,Total,Municipal,0.1,0.1,0.1,0.2,0.6,0.1
+3552908.0,Taciba,Total,Municipal,0.9,0.0,0.0,0.0,0.0,0.0
+3553005.0,Taguaí,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3553104.0,Taiaçu,Total,Municipal,0.3,0.0,0.0,1.3,0.0,1.6
+3553203.0,Taiúva,Total,Municipal,0.3,0.0,0.0,0.0,0.0,0.0
+3553302.0,Tambaú,Total,Municipal,0.2,0.5,0.0,0.3,0.0,0.0
+3553401.0,Tanabi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3553500.0,Tapiraí,Total,Municipal,0.2,0.0,0.0,0.4,0.0,0.0
+3553609.0,Tapiratiba,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3553658.0,Taquaral,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3553708.0,Taquaritinga,Total,Municipal,0.0,0.0,0.0,0.1,0.0,0.2
+3553807.0,Taquarituba,Total,Municipal,0.1,0.0,0.0,0.0,0.0,0.0
+3553856.0,Taquarivaí,Total,Municipal,1.3,0.0,4.3,0.3,0.0,0.0
+3553906.0,Tarabai,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3553955.0,Tarumã,Total,Municipal,0.8,0.5,0.0,0.0,0.0,0.0
+3554003.0,Tatuí,Total,Municipal,0.2,0.1,0.2,0.1,0.1,0.0
+3554102.0,Taubaté,Total,Municipal,1.1,1.2,1.0,0.1,0.2,0.1
+3554201.0,Tejupá,Total,Municipal,0.7,1.5,0.0,0.0,0.0,0.0
+3554300.0,Teodoro Sampaio,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3554409.0,Terra Roxa,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3554508.0,Tietê,Total,Municipal,0.7,0.3,0.5,0.0,0.0,0.0
+3554607.0,Timburi,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3554656.0,Torre de Pedra,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3554706.0,Torrinha,Total,Municipal,0.0,,,0.0,,
+3554755.0,Trabiju,Total,Municipal,4.9,5.3,0.0,0.0,0.0,0.0
+3554805.0,Tremembé,Total,Municipal,3.2,0.3,4.5,0.2,0.0,0.2
+3554904.0,Três Fronteiras,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3554953.0,Tuiuti,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3555000.0,Tupã,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3555109.0,Tupi Paulista,Total,Municipal,0.3,0.0,0.7,0.0,0.0,0.0
+3555208.0,Turiúba,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3555307.0,Turmalina,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3555356.0,Ubarana,Total,Municipal,1.6,0.0,0.0,0.0,0.0,0.0
+3555406.0,Ubatuba,Total,Municipal,0.5,0.1,1.0,0.2,0.3,0.3
+3555505.0,Ubirajara,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3555604.0,Uchoa,Total,Municipal,0.4,0.0,0.0,0.0,0.0,0.0
+3555703.0,União Paulista,Total,Municipal,0.0,,,0.0,,
+3555802.0,Urânia,Total,Municipal,0.0,,,1.3,,
+3555901.0,Uru,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3556008.0,Urupês,Total,Municipal,0.1,0.8,0.0,0.0,0.0,0.0
+3556107.0,Valentim Gentil,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3556206.0,Valinhos,Total,Municipal,3.4,4.4,3.1,0.3,0.2,0.1
+3556305.0,Valparaíso,Total,Municipal,0.2,0.0,0.0,0.2,0.4,0.0
+3556354.0,Vargem,Total,Municipal,0.2,0.0,0.0,0.0,0.0,0.0
+3556404.0,Vargem Grande do Sul,Total,Municipal,0.2,0.0,0.3,0.0,0.0,0.0
+3556453.0,Vargem Grande Paulista,Total,Municipal,0.1,0.0,0.5,0.0,0.0,0.0
+3556503.0,Várzea Paulista,Total,Municipal,0.0,0.0,0.1,0.0,0.0,0.0
+3556602.0,Vera Cruz,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3556701.0,Vinhedo,Total,Municipal,3.1,6.5,1.0,0.0,0.0,0.0
+3556800.0,Viradouro,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3556909.0,Vista Alegre do Alto,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3556958.0,Vitória Brasil,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3557006.0,Votorantim,Total,Municipal,0.2,0.2,0.3,0.2,0.0,0.4
+3557105.0,Votuporanga,Total,Municipal,0.3,1.0,0.1,0.0,0.3,0.0
+3557154.0,Zacarias,Total,Municipal,0.0,0.0,0.0,0.0,0.0,0.0
+3557204.0,Chavantes,Total,Municipal,2.7,0.8,1.3,0.0,0.0,0.0
+3557303.0,Estiva Gerbi,Total,Municipal,3.6,4.8,0.0,0.0,0.0,0.0

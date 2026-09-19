@@ -1,0 +1,10 @@
+# Dependências do dashboard (app.py) — é só isto que o Streamlit Cloud instala.
+# Versões testadas localmente em 2026-09-19, Python 3.13.
+streamlit==1.57.0
+pandas==3.0.2
+plotly==7.0.0
+
+# Os scripts de coleta e processamento em scripts/ NÃO rodam no deploy e por isso
+# ficam fora daqui de propósito: geobr e pdfplumber puxam GDAL/geopandas e fariam
+# o build do Streamlit Cloud estourar. Para rodá-los localmente:
+#   pip install geobr pdfplumber folium

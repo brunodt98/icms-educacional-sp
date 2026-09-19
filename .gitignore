@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Logs de desenvolvimento — contêm tracebacks e metadados extraídos dos PDFs
+# de origem (inclusive o campo Author do FNDE, que é um CPF)
+debug_logs/
+
+# Saídas geradas — reproduzíveis rodando os scripts
+output/
+
+# Ambiente / editor
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Streamlit — segredos de deploy nunca vão para o repositório
+.streamlit/secrets.toml
