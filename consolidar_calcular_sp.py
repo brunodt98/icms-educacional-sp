@@ -100,7 +100,14 @@ MAPEAMENTO DE CAMPOS (dado coletado -> campo da formula) e suas limitacoes:
 CENARIO "DESEMPENHO MAXIMO" (para calcular quanto o municipio deixou de
 ganhar em participacao) - definicao adotada, TAMBEM uma escolha nossa:
   - nota_iqa = nota_iqi = 10 (nota maxima da escala IDEB/IDESP)
-  - evolucao_iqa = evolucao_iqi = 0 (ja no maximo, sem espaco de evolucao)
+  - evolucao_iqa = evolucao_iqi = MESMO valor real do municipio (corrigido em
+    26/09/2026; antes eram zerados). O IQA e' NOTA + EVOLUCAO, soma sem teto,
+    entao "nota 10 com evolucao zero" NAO e' o maximo alcancavel: zerando a
+    evolucao, o teto de quem ja evoluiu muito cai ABAIXO do real (o caso de
+    Santa Maria da Serra, 12,0 real contra 10,0 "maximo"). A evolucao e' dado
+    ja realizado, como o ISE e as matriculas, e nao uma meta que a gestao
+    "atinge" no cenario. PENDENCIA: se o Anexo Unico impuser teto ao IQA
+    (p.ex. IQA <= 10), esta escolha muda.
   - indice_socioeconomico = MESMO valor real do municipio (o ISE reflete a
     composicao socioeconomica dos alunos atendidos, nao e' uma meta de
     politica publica que o municipio "cumpre" ou nao)
@@ -222,16 +229,33 @@ def construir_municipios(df: pd.DataFrame) -> list[IndicadoresMunicipio]:
 
 
 def cenario_maximo(m: IndicadoresMunicipio) -> IndicadoresMunicipio:
-    """Mesmo municipio, com desempenho maximo controlavel - ver docstring do modulo."""
+    """Mesmo municipio, com desempenho maximo controlavel - ver docstring do modulo.
+
+    A EVOLUCAO e' mantida no valor REAL, e nao zerada (mudanca de 26/09/2026).
+    Motivo: o IQA da formula e' NOTA + EVOLUCAO, uma soma sem teto. Zerando a
+    evolucao, o "maximo" de um municipio que ja evoluiu muito fica ABAIXO do
+    real - Santa Maria da Serra tinha 9,1 + 2,9 = 12,0 no real contra 10,0 + 0,0
+    = 10,0 no "maximo", e aparecia no painel recebendo R$ 310 mil a MENOS por
+    melhorar. Com a evolucao real preservada ela vai a 10,0 + 2,9 = 12,9, acima
+    do real, como um teto deve ser.
+
+    A evolucao entra aqui na mesma categoria do ISE e do numero de matriculas:
+    dado ja realizado, que a gestao nao "atinge" como meta no cenario. Os itens
+    que a gestao controla (notas, reprovacao, abandono, tempo integral) e' que
+    vao ao maximo.
+
+    PENDENCIA: se o Anexo Unico da Lei 17.575/2022 impuser teto ao IQA (por
+    exemplo, IQA <= 10), esta escolha muda - ver LIMITACOES_METODOLOGICAS.md.
+    """
     return IndicadoresMunicipio(
         nome=m.nome,
         taxa_reprovacao=0.0,
         taxa_abandono=0.0,
         garantia_fluxo=True,
         nota_iqa=10.0,
-        evolucao_iqa=0.0,
+        evolucao_iqa=m.evolucao_iqa,
         nota_iqi=10.0,
-        evolucao_iqi=0.0,
+        evolucao_iqi=m.evolucao_iqi,
         indice_socioeconomico=m.indice_socioeconomico,
         percentual_tempo_integral=1.0,
         numero_matriculas=m.numero_matriculas,

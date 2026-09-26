@@ -288,10 +288,14 @@ def carregar_dados() -> pd.DataFrame:
     df["pre_oficial_pct"] = df["pre_real_oficial_sefaz_formula_antiga"] * 100
     df["pati_pct"] = df["pati"] * 100
     df["contribuicao_ipm_pct"] = df["contribuicao_ipm_educacao"] * 100
-    # No cenario "todos no maximo" o IQEM se iguala e o rateio vira proporcional
-    # as matriculas (corr = 1.0 com o share de matriculas). A diferenca contra a
-    # participacao simulada e', portanto, o efeito liquido da QUALIDADE da rede
-    # sobre a fatia: positivo = a qualidade rende fatia acima do porte.
+    # No cenario "todos no maximo" os componentes controlaveis (notas, fluxo,
+    # tempo integral) se igualam; sobram as diferencas de ISE e de EVOLUCAO, que
+    # sao mantidas nos valores reais (ver cenario_maximo em
+    # consolidar_calcular_sp.py). Na pratica o rateio fica quase proporcional as
+    # matriculas - corr = 0,99997 com o share de matriculas, medido em
+    # 26/09/2026 - entao a diferenca contra a participacao simulada continua
+    # sendo, em boa aproximacao, o efeito liquido da QUALIDADE da rede sobre a
+    # fatia: positivo = a qualidade rende fatia acima do porte.
     df["efeito_qualidade_pp"] = -df["diferenca_pontos_percentuais_pre"]
     return df
 
@@ -490,8 +494,9 @@ with aba_geral:
 
     section(
         "Onde a qualidade da rede rende — e onde custa",
-        "No cenário em que todos os municípios atingem o desempenho máximo, o IQEM se "
-        "iguala e o rateio passa a ser proporcional às matrículas. A diferença contra a "
+        "No cenário em que todos os municípios atingem o desempenho máximo, os "
+        "componentes que a gestão controla se igualam e o rateio fica quase "
+        "proporcional às matrículas. A diferença contra a "
         "participação simulada isola, portanto, o efeito da qualidade: em azul, redes "
         "cuja qualidade rende fatia acima do porte; em vermelho, as que ficam abaixo. "
         "A escala de cor satura no percentil 95 — sem isso, São Paulo sozinho "

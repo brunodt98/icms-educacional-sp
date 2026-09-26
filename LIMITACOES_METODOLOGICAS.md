@@ -98,6 +98,13 @@ proporção de alunos vulneráveis do que com uma média normalizada.
   apresentação pi5.pptx que o grupo já tinha feito manualmente.
 - ~~Validação de ordem de grandeza contra o IPM~~ — **feito em 12/09/2026**,
   ver seção "Comparação com o IPM real" abaixo.
+- **Existe teto para o IQA/IQI? — PENDENTE, afeta a "parcela cheia" de
+  todos os municípios.** A fórmula é `IQA = NOTA + EVOLUÇÃO`, uma soma sem
+  limite superior declarado. Se o Anexo Único impuser um teto (por exemplo
+  `IQA ≤ 10`), o cenário de desempenho máximo muda e as parcelas cheias
+  precisam ser recalculadas. Ver a seção "Cenário máximo: por que a
+  evolução não é zerada" abaixo para a escolha adotada enquanto isso.
+  **Perguntar ao professor / Seduc-SP.**
 
 ## Cálculo consolidado (IQEM, PRE real vs. máxima hipotética)
 
@@ -166,6 +173,57 @@ máximo. Saída em `data/processed/painel_icms_sp.csv`.
      SP ou diretamente com a Sefaz-SP/Seduc-SP. Até lá, `pre_real` e
      `pre_maxima_hipotetica` (participação relativa, base 1,0) continuam
      sendo o resultado mais seguro para apresentar.
+
+## Cenário máximo: por que a evolução não é zerada (26/09/2026)
+
+**O que era, e por que estava errado.** Até 26/09/2026, `cenario_maximo()`
+montava o município ideal com `evolucao_iqa = evolucao_iqi = 0`, sob o
+raciocínio de que quem já está na nota máxima não tem espaço para evoluir.
+O problema é que o IQA da fórmula é `NOTA + EVOLUÇÃO` — uma soma **sem teto**
+— então "nota 10 com evolução zero" (= 10,0) não é o máximo alcançável.
+
+O caso que expôs a falha foi **Santa Maria da Serra**, que é ao mesmo tempo
+a maior nota (9,1) e a maior evolução (+2,9) do estado:
+
+| | Real | "Máximo" (regra antiga) |
+|---|---|---|
+| Nota | 9,1 | 10,0 |
+| Evolução | 2,9 | 0,0 |
+| **IQA** | **12,0** | **10,0** |
+
+O teto ficava **abaixo** do real, e o painel afirmava que o município
+receberia **R$ 310 mil a menos** se atingisse o desempenho máximo — um
+resultado absurdo. O efeito atingia, em menor grau, os 417 municípios com
+evolução positiva, cuja parcela cheia estava subestimada.
+
+**Escolha adotada.** A evolução passa a ser **mantida no valor real** dentro
+do cenário máximo, na mesma categoria do ISE e do número de matrículas: é
+dado já realizado, não uma meta que a gestão "atinge" no cenário. Vão ao
+máximo apenas os itens sob controle da gestão — notas, taxas de reprovação e
+abandono, e percentual de tempo integral.
+
+Com a correção, Santa Maria da Serra vai a 10,0 + 2,9 = 12,9 no cenário
+máximo, acima do real, como um teto deve ser.
+
+**Impacto medido na troca** (618 municípios, painel de 26/09/2026):
+
+| | Regra antiga | Regra nova |
+|---|---|---|
+| Municípios com parcela cheia **abaixo** do real | 1 | **0** |
+| Municípios com o valor alterado | — | 564 de 618 |
+| Mediana da alteração | — | +1,96% |
+| Maior alteração | — | +28,5% |
+
+**Efeito colateral documentado.** No cenário coletivo ("todos no máximo"), o
+IQEM não se iguala mais entre municípios — ele passa a variar de 6,69 a
+10,46, porque ISE e evolução seguem nos valores reais. Na prática o rateio
+continua quase proporcional às matrículas (correlação de 0,99997 com o share
+de matrículas), então a leitura da aba "Onde a qualidade da rede rende"
+permanece válida; o texto do dashboard foi ajustado para não afirmar mais
+que o IQEM "se iguala".
+
+**Pendência associada:** se o Anexo Único da Lei 17.575/2022 impuser teto ao
+IQA, esta escolha muda. Ver "O que ainda falta decidir/coletar".
 
 ## Comparação com o IPM real (Sefaz-SP)
 
