@@ -1,0 +1,11 @@
+ano_base,criterio,peso_pct,erro_maximo_reproducao_pp,fonte,confere_com
+2025,valor_adicionado,73.99992292510953,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,cota_parte_educacao,11.999962448349393,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,receita_tributaria,5.000301719032161,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,area_cultivada,3.0000250564392745,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,igual_para_todos,1.9998969449721817,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,vegetacao_nativa,1.0000028615552836,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,populacao,0.9999961554104878,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,indice_area_protegida,0.9999926208130983,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,area_inundada,0.5000030884031315,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"
+2025,residuos_solidos,0.4998961799154723,6.299888465413628e-06,decomposicao do IPM oficial (DIPAM/Sefaz-SP) por minimos quadrados,"Lei 17.575/2022, art. 2o, I (inciso X do art. 1o da Lei 3.201/1981)"

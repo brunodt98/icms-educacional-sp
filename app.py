@@ -218,6 +218,18 @@ st.markdown(
   .meth li {{ font-size: .85rem; color: {INK_2}; line-height: 1.65; margin-bottom: .5rem; }}
   .meth li b {{ color: {INK}; font-weight: 620; }}
 
+  /* ---------- cadeia de calculo ate o R$ ---------- */
+  .cadeia {{
+      background: {SURFACE}; border: 1px solid {GRID}; border-radius: 10px;
+      padding: 1rem 1.15rem;
+  }}
+  .cadeia ol {{ margin: 0; padding-left: 1.15rem; }}
+  .cadeia li {{
+      font-size: .85rem; color: {INK_2}; line-height: 1.75; margin-bottom: .3rem;
+  }}
+  .cadeia li b {{ color: {INK}; font-weight: 620; }}
+  .cadeia .passo {{ color: {MUTED}; font-size: .78rem; }}
+
   [data-testid="stElementToolbar"] {{ display: none; }}
 </style>
 """,
@@ -268,11 +280,14 @@ METRICAS = {
 
 @st.cache_data
 def carregar_dados() -> pd.DataFrame:
+    """Le o painel LONGO (municipio x periodo x regime de peso do criterio)."""
     df = pd.read_csv(BASE_DIR / "data" / "processed" / "painel_icms_sp.csv")
     df["pre_real_pct"] = df["pre_real"] * 100
     df["pre_maxima_pct"] = df["pre_maxima_hipotetica"] * 100
+    df["pre_cheia_pct"] = df["pre_cheia_individual"] * 100
     df["pre_oficial_pct"] = df["pre_real_oficial_sefaz_formula_antiga"] * 100
     df["pati_pct"] = df["pati"] * 100
+    df["contribuicao_ipm_pct"] = df["contribuicao_ipm_educacao"] * 100
     # No cenario "todos no maximo" o IQEM se iguala e o rateio vira proporcional
     # as matriculas (corr = 1.0 com o share de matriculas). A diferenca contra a
     # participacao simulada e', portanto, o efeito liquido da QUALIDADE da rede
@@ -281,9 +296,32 @@ def carregar_dados() -> pd.DataFrame:
     return df
 
 
-df = carregar_dados()
-medias = df[list(METRICAS)].mean()
-N = len(df)
+def brl(valor: float, casas: int = 0) -> str:
+    """Formata em reais no padrao pt-BR (1.234.567,89)."""
+    if pd.isna(valor):
+        return "—"
+    texto = f"{valor:,.{casas}f}"
+    return "R$ " + texto.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
+
+
+def brl_curto(valor: float) -> str:
+    """Reais em escala legivel: R$ 37,4 bi / R$ 1,2 mi / R$ 840 mil."""
+    if pd.isna(valor):
+        return "—"
+    sinal = "-" if valor < 0 else ""
+    v = abs(valor)
+    for corte, sufixo in ((1e9, "bi"), (1e6, "mi"), (1e3, "mil")):
+        if v >= corte:
+            return f"{sinal}R$ {v / corte:,.1f} {sufixo}".replace(".", ",")
+    return sinal + brl(v, 2)
+
+
+TODOS = carregar_dados()
+N = TODOS["municipio"].nunique()
+MESES_NOME = {
+    1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 5: "maio", 6: "junho",
+    7: "julho", 8: "agosto", 9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro",
+}
 
 # ===========================================================================
 # CABECALHO
@@ -302,6 +340,87 @@ municipal — resultado oficial só a partir de 2027/2028</div>
 <hr class='rule'>
 """,
     unsafe_allow_html=True,
+)
+
+# ===========================================================================
+# CONTROLES GLOBAIS - periodo, regime de peso e escala do valor
+# ===========================================================================
+# Ficam acima das abas de proposito: o periodo muda o valor em R$ mostrado em
+# "Visão geral" e em "Por município", e um seletor por aba sairia do ar de
+# sincronia entre as duas.
+ctrl_periodo, ctrl_regime, ctrl_escala = st.columns([1, 1.5, 1.5], gap="medium")
+
+periodos = sorted(TODOS["periodo"].unique(), reverse=True)
+
+
+def rotulo_periodo(p: int) -> str:
+    linha = TODOS[TODOS["periodo"] == p].iloc[0]
+    if linha["periodo_fechado"]:
+        return f"{p} · ano fechado"
+    return f"{p} · até {MESES_NOME[int(linha['meses_publicados'])]}"
+
+
+periodo_sel = ctrl_periodo.selectbox(
+    "Período do repasse", periodos, format_func=rotulo_periodo,
+    help="Ano civil em que o ICMS foi repassado aos municípios. O ano corrente "
+         "traz o acumulado até o último mês publicado pela Sefaz-SP.",
+)
+
+_linha_periodo = TODOS[TODOS["periodo"] == periodo_sel].iloc[0]
+ANO_BASE = int(_linha_periodo["ano_base_ipm"])
+MESES_PUB = int(_linha_periodo["meses_publicados"])
+_peso_vigente = TODOS[
+    (TODOS["periodo"] == periodo_sel) & (TODOS["regime_peso"] == "vigente")
+]["peso_criterio_educacao"].iloc[0]
+
+regime_sel = ctrl_regime.radio(
+    "Peso do critério educação no IPM",
+    ["vigente", "pleno"], horizontal=True,
+    format_func=lambda r: (
+        f"Vigente · {_peso_vigente:.0%} (ano-base {ANO_BASE})" if r == "vigente"
+        else "Regime pleno · 13%"
+    ),
+    help="A Lei 17.575/2022 (art. 2º, I) escalona o critério educação: 10% no ano-base "
+         "2023, 11% em 2024, 12% em 2025 e 13% a partir de 2026. 'Vigente' usa o peso "
+         "realmente em vigor no período; 'regime pleno' aplica os 13% da regra madura, "
+         "o que é um cenário, não um valor histórico.",
+)
+
+escala_sel = ctrl_escala.radio(
+    "Escala do valor de ICMS",
+    ["liquido", "bruto"], horizontal=True,
+    format_func=lambda e: (
+        "Líquido · pós-Fundeb" if e == "liquido" else "Bruto · cota-parte de 25%"
+    ),
+    help="A Sefaz-SP publica o valor líquido, já descontados os 20% retidos para o "
+         "Fundeb (Lei 11.494/2007) — é o dinheiro que entra no caixa do município. "
+         "O bruto é esse valor ÷ 0,80, ou seja, a cota-parte de 25% antes da retenção.",
+)
+
+df = TODOS[
+    (TODOS["periodo"] == periodo_sel) & (TODOS["regime_peso"] == regime_sel)
+].reset_index(drop=True)
+medias = df[list(METRICAS)].mean()
+
+COL_REPASSADA = f"parcela_repassada_{escala_sel}_reais"
+COL_CHEIA = f"parcela_cheia_{escala_sel}_reais"
+COL_DIFERENCA = f"diferenca_{escala_sel}_reais"
+COL_ICMS_MUNI = f"icms_municipal_{escala_sel}_reais"
+ICMS_ESTADO = float(df[f"icms_estado_{escala_sel}_reais"].iloc[0])
+PESO = float(df["peso_criterio_educacao"].iloc[0])
+BOLO_EDUCACAO = ICMS_ESTADO * PESO
+FORA_DO_PAINEL_PCT = float(df["cota_parte_educacao_oficial_fora_do_painel_pct"].iloc[0])
+
+_nota_periodo = (
+    f"ano fechado" if bool(df["periodo_fechado"].iloc[0])
+    else f"acumulado de janeiro a {MESES_NOME[MESES_PUB]} ({MESES_PUB} meses)"
+)
+st.caption(
+    f"Exibindo **{periodo_sel}** ({_nota_periodo}), peso do critério educação de "
+    f"**{PESO:.0%}** e valor **{'líquido' if escala_sel == 'liquido' else 'bruto'}**. "
+    f"A fórmula nova do IQEM só vale a partir do ano-base 2026 (repasse em 2028), "
+    f"então aplicá-la ao dinheiro de {periodo_sel} é um contrafactual: mostra como "
+    f"aquele valor teria sido dividido sob a regra nova."
 )
 
 aba_geral, aba_municipio, aba_tabela, aba_metodologia = st.tabs(
@@ -327,6 +446,46 @@ with aba_geral:
         "Qualidade rende fatia", f"{rendem} de {N}",
         help="Municípios em que o desempenho da rede rende participação acima da "
              "fatia que teriam num rateio puramente por matrículas",
+    )
+
+    section(
+        "O dinheiro do período",
+        "Do ICMS repassado aos municípios até a parcela de cada rede: "
+        "IQEM → participação no critério educação (PRE) → × peso do critério no IPM "
+        "→ × ICMS do período.",
+    )
+    d1, d2, d3, d4 = st.columns(4, gap="medium")
+    d1.metric(
+        f"ICMS repassado · {periodo_sel}", brl_curto(ICMS_ESTADO),
+        help=f"Soma dos 645 municípios no {_nota_periodo}, valor "
+             f"{'líquido (pós-Fundeb)' if escala_sel == 'liquido' else 'bruto (cota-parte de 25%)'}. "
+             "Fonte: Sefaz-SP, Repasse de Tributos a Municípios.",
+    )
+    d2.metric(
+        "Bolo do critério educação", brl_curto(BOLO_EDUCACAO),
+        delta=f"{PESO:.0%} do IPM", delta_color="off",
+        help="É o total acima multiplicado pelo peso do critério educação no IPM. "
+             "É esse valor que o PRE divide entre os municípios.",
+    )
+    d3.metric(
+        "Parcela mediana por município", brl_curto(df[COL_REPASSADA].median()),
+        help=f"Metade dos {N} municípios recebe menos que isso pelo critério educação. "
+             "A mediana, e não a média, porque a distribuição é muito assimétrica — "
+             "São Paulo concentra uma fatia enorme.",
+    )
+    d4.metric(
+        "Diferença mediana até a parcela cheia", f"{df['diferenca_pct'].median():+.1f}%",
+        help="Quanto o município mediano deixa de receber por não estar no desempenho "
+             "máximo, em % sobre a própria parcela. Cenário individual: só ele no "
+             "máximo, os demais nos valores reais.",
+    )
+    st.caption(
+        f"As parcelas repassadas somam exatamente o bolo do critério ({brl_curto(BOLO_EDUCACAO)}). "
+        f"As parcelas **cheias não são somáveis**: cada uma vem de um cenário diferente "
+        f"(um município de cada vez no máximo), então somá-las não descreve nenhum "
+        f"cenário real. Os {N} municípios simulados dividem aqui 100% do bolo — na fonte "
+        f"oficial, os {645 - N} que ficaram fora detêm {FORA_DO_PAINEL_PCT:.2f}% da "
+        f"cota-parte educação."
     )
 
     section(
@@ -519,6 +678,99 @@ with aba_municipio:
                    "fatia que o município teria num rateio puramente por matrículas. "
                    "1º = maior ganho")
 
+    # -----------------------------------------------------------------------
+    # PARCELA REPASSADA x PARCELA CHEIA (em R$)
+    # -----------------------------------------------------------------------
+    section(
+        f"Quanto {municipio_sel} recebe pelo critério educação — e quanto receberia no máximo",
+        "A parcela cheia é o cenário individual: só este município atinge os índices "
+        "máximos, os demais ficam nos valores reais e o rateio é recalculado.",
+    )
+
+    r1, r2, r3, r4 = st.columns(4, gap="medium")
+    r1.metric(
+        "Parcela repassada", brl(linha[COL_REPASSADA], 2),
+        help=f"peso do critério ({PESO:.0%}) × PRE ({linha['pre_real_pct']:.4f}%) × "
+             f"ICMS do período ({brl_curto(ICMS_ESTADO)}).",
+    )
+    r2.metric(
+        "Parcela cheia", brl(linha[COL_CHEIA], 2),
+        help=f"Mesmo cálculo com o PRE do cenário máximo individual "
+             f"({linha['pre_cheia_pct']:.4f}%).",
+    )
+    r3.metric(
+        "Diferença", brl(linha[COL_DIFERENCA], 2),
+        delta=f"{linha['diferenca_pct']:+.1f}%",
+        help="Quanto o município deixa de receber no período por não estar no "
+             "desempenho máximo.",
+    )
+    if pd.notna(linha[COL_ICMS_MUNI]) and linha[COL_ICMS_MUNI]:
+        r4.metric(
+            "Peso no ICMS total da cidade",
+            f"{linha[COL_REPASSADA] / linha[COL_ICMS_MUNI]:.2%}",
+            help=f"A parcela educacional dentro de tudo o que {municipio_sel} recebeu de "
+                 f"ICMS no período ({brl_curto(linha[COL_ICMS_MUNI])}, todos os critérios "
+                 "do IPM somados).",
+        )
+    else:
+        r4.metric("Peso no ICMS total da cidade", "—",
+                  help="Repasse total do município não encontrado para este período.")
+
+    col_cad, col_barra = st.columns([1.15, 1], gap="medium")
+
+    with col_cad:
+        with st.container(border=True):
+            card_head("A cadeia do cálculo, passo a passo",
+                      "Os mesmos números acima, na ordem em que a lei os aplica.")
+            st.markdown(
+                f"""
+<div class='cadeia'><ol>
+  <li><span class='passo'>Componentes →</span> IQEM =
+      <b>{linha['iqem_real']:.3f}</b> <span class='passo'>(0,40·IQA + 0,40·IQI +
+      0,10·ISE + 0,10·PATI)</span></li>
+  <li><span class='passo'>× matrículas, sobre o total do Estado →</span> PRE =
+      <b>{linha['pre_real_pct']:.4f}%</b> <span class='passo'>do critério educação</span></li>
+  <li><span class='passo'>× peso do critério no IPM ({PESO:.0%}) →</span> contribuição no IPM =
+      <b>{linha['contribuicao_ipm_pct']:.4f}%</b></li>
+  <li><span class='passo'>× ICMS repassado no período ({brl_curto(ICMS_ESTADO)}) →</span>
+      parcela repassada = <b>{brl(linha[COL_REPASSADA], 2)}</b></li>
+  <li><span class='passo'>No cenário máximo individual (PRE
+      {linha['pre_cheia_pct']:.4f}%) →</span> parcela cheia =
+      <b>{brl(linha[COL_CHEIA], 2)}</b>, diferença de
+      <b>{brl(linha[COL_DIFERENCA], 2)}</b> ({linha['diferenca_pct']:+.1f}%)</li>
+</ol></div>
+""",
+                unsafe_allow_html=True,
+            )
+
+    with col_barra:
+        with st.container(border=True):
+            card_head("Repassada × cheia",
+                      f"Em reais, no período {periodo_sel}.")
+            fig_reais = go.Figure()
+            fig_reais.add_trace(go.Bar(
+                y=["Parcela cheia", "Parcela repassada"],
+                x=[linha[COL_CHEIA], linha[COL_REPASSADA]],
+                orientation="h", width=0.5,
+                marker=dict(color=[BLUE_SOFT, BLUE]),
+                text=[brl_curto(linha[COL_CHEIA]), brl_curto(linha[COL_REPASSADA])],
+                textposition="outside", cliponaxis=False,
+                hovertemplate="%{y}: %{x:,.2f}<extra></extra>",
+            ))
+            fig_reais.update_layout(
+                height=200,
+                xaxis=dict(title=None, showgrid=True, gridcolor=GRID,
+                           range=[0, float(linha[COL_CHEIA]) * 1.28]),
+                yaxis=dict(title=None, tickfont=dict(size=11, color=INK_2)),
+                margin=dict(l=4, r=4, t=4, b=4), showlegend=False,
+            )
+            st.plotly_chart(fig_reais, width="stretch", config=PLOT_CFG)
+            st.caption(
+                f"A diferença de {brl_curto(linha[COL_DIFERENCA])} é o que o desempenho "
+                f"máximo acrescentaria à fatia de {municipio_sel} neste período — "
+                "mantendo matrícula e ISE reais."
+            )
+
     section(
         "Cada métrica contra a média do Estado",
         "O delta compara o município com a média dos municípios simulados.",
@@ -641,11 +893,16 @@ with aba_tabela:
         "taxa_reprovacao_pct", "taxa_abandono_pct", "pati_pct", "ise_vulnerabilidade",
         "iqem_real", "pre_oficial_pct", "pre_real_pct", "pre_maxima_pct",
         "efeito_qualidade_pp",
+        "contribuicao_ipm_pct", COL_REPASSADA, COL_CHEIA, COL_DIFERENCA, "diferenca_pct",
     ]
     visao = dados_tabela[colunas_exibir].sort_values(
-        "efeito_qualidade_pp", ascending=False
+        COL_DIFERENCA, ascending=False
     )
-    st.caption(f"{len(visao)} de {N} municípios")
+    st.caption(
+        f"{len(visao)} de {N} municípios · valores em R$ referentes a {periodo_sel} "
+        f"({_nota_periodo}), peso de {PESO:.0%}, escala "
+        f"{'líquida' if escala_sel == 'liquido' else 'bruta'}"
+    )
     st.dataframe(
         visao, width="stretch", height=520, hide_index=True,
         column_config={
@@ -668,11 +925,38 @@ with aba_tabela:
                 "Efeito qualidade p.p.", format="%+.3f",
                 help="Positivo = a qualidade da rede rende fatia acima do porte",
             ),
+            "contribuicao_ipm_pct": st.column_config.NumberColumn(
+                "Contrib. no IPM %", format="%.4f",
+                help=f"Peso do critério educação ({PESO:.0%}) × participação no critério. "
+                     "Somada entre todos os municípios, dá o próprio peso do critério.",
+            ),
+            COL_REPASSADA: st.column_config.NumberColumn(
+                "Parcela repassada R$", format="localized",
+                help="Contribuição no IPM × ICMS repassado aos municípios no período.",
+            ),
+            COL_CHEIA: st.column_config.NumberColumn(
+                "Parcela cheia R$", format="localized",
+                help="Cenário individual: só este município no máximo, os demais reais. "
+                     "Coluna não somável.",
+            ),
+            COL_DIFERENCA: st.column_config.NumberColumn(
+                "Diferença R$", format="localized",
+                help="Parcela cheia − parcela repassada.",
+            ),
+            "diferenca_pct": st.column_config.NumberColumn(
+                "Diferença %", format="%+.1f",
+                help="Diferença sobre a própria parcela repassada.",
+            ),
         },
     )
     st.download_button(
         "Baixar CSV filtrado", visao.to_csv(index=False).encode("utf-8"),
-        file_name="painel_icms_sp_filtrado.csv", mime="text/csv",
+        file_name=f"painel_icms_sp_{periodo_sel}_{regime_sel}_{escala_sel}.csv",
+        mime="text/csv",
+    )
+    st.caption(
+        "O CSV completo, com todos os períodos e regimes de peso lado a lado, é o "
+        "`data/processed/painel_icms_sp.csv` do repositório."
     )
 
 # ===========================================================================
@@ -724,6 +1008,79 @@ with aba_metodologia:
 """,
             unsafe_allow_html=True,
         )
+
+    st.markdown("<hr class='rule'>", unsafe_allow_html=True)
+
+    section("Como o valor em R$ é obtido",
+            "A participação relativa (PRE) vira dinheiro em duas etapas: o peso do "
+            "critério educação dentro do IPM e o ICMS repassado no período.")
+
+    col_cadeia, col_pesos = st.columns(2, gap="medium")
+    with col_cadeia:
+        st.markdown(
+            f"""
+<div class='meth'>
+  <h3 style='color:#006300'>Fonte do valor e escala</h3>
+  <div class='tag'>Sefaz-SP · Repasse de Tributos a Municípios</div>
+  <ul>
+    <li><b>Valor coletado município a município</b>, mês a mês, e somado para o
+        Estado. Nada é estimado: o total do período é a soma dos 645 municípios.</li>
+    <li><b>Líquido</b> é o que a Sefaz publica — já descontados os 20% retidos para o
+        Fundeb (Lei 11.494/2007, desde jan/2009). É o dinheiro que entra no caixa
+        do município.</li>
+    <li><b>Bruto</b> é esse valor ÷ 0,80: a cota-parte de 25% do ICMS
+        (art. 158, IV da Constituição) antes da retenção. As duas escalas estão
+        no painel, rotuladas — nenhuma delas é estimativa.</li>
+    <li><b>Ano corrente</b> traz o acumulado até o último mês publicado
+        ({MESES_NOME[MESES_PUB]} de {periodo_sel}, {MESES_PUB} meses), não um ano
+        projetado.</li>
+  </ul>
+</div>
+""",
+            unsafe_allow_html=True,
+        )
+    with col_pesos:
+        st.markdown(
+            """
+<div class='meth'>
+  <h3 style='color:#006300'>Peso do critério educação no IPM</h3>
+  <div class='tag'>Lei 17.575/2022, art. 2º, I — inciso X do art. 1º da Lei 3.201/1981</div>
+  <ul>
+    <li>A lei escalona o critério: <b>10%</b> no ano-base 2023, <b>11%</b> em 2024,
+        <b>12%</b> em 2025 e <b>13%</b> a partir de 2026. Em paralelo, o critério
+        população cai 3% → 2% → 1% → extinto.</li>
+    <li><b>Conferido contra o dado oficial</b>, não só lido na lei: a decomposição do
+        IPM publicado pela Sefaz recupera os pesos de todos os critérios com erro da
+        ordem de 1&nbsp;×&nbsp;10⁻⁶ ponto percentual — 11% em 2024 e 12% em 2025,
+        exatamente como na lei.</li>
+    <li>O IPM de um ano-base rege os repasses de <b>dois anos depois</b>. Logo os 13%
+        valem para o repasse de <b>2028</b> — o mesmo exercício em que a fórmula nova
+        do IQEM começa a valer.</li>
+    <li>Os demais pesos vigentes: 74% valor adicionado, 5% receita tributária, 3% área
+        cultivada, 2% igual para todos, 1% área protegida, 1% vegetação nativa,
+        0,5% área inundada, 0,5% resíduos sólidos.</li>
+  </ul>
+</div>
+""",
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        f"""
+<div class='note' style='margin-top:1rem'>
+  <b>Três ressalvas para citar ao apresentar.</b>
+  <b>1.</b> A fórmula do IQEM simulada aqui só vale a partir do ano-base 2026
+  (repasse em 2028); aplicá-la ao dinheiro de {periodo_sel} é um contrafactual —
+  mostra como aquele valor teria sido dividido sob a regra nova, não o que aconteceu.
+  <b>2.</b> A parcela cheia não é somável: cada uma é um cenário em que só aquele
+  município atinge o máximo, então a soma da coluna não descreve cenário nenhum.
+  <b>3.</b> Os {N} municípios simulados dividem 100% do bolo do critério; na fonte
+  oficial, os {645 - N} que ficaram fora por falta de dado educacional detêm
+  {FORA_DO_PAINEL_PCT:.2f}% da cota-parte educação.
+</div>
+""",
+        unsafe_allow_html=True,
+    )
 
     st.markdown("<hr class='rule'>", unsafe_allow_html=True)
     st.markdown(

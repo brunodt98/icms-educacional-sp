@@ -112,13 +112,146 @@ def participacao_rateio(municipios: list[IndicadoresMunicipio]) -> dict:
     return {nome: valor / total for nome, valor in pesos.items()}
 
 
+def participacao_com_um_no_maximo(municipios: list[IndicadoresMunicipio],
+                                   cenario_maximo) -> dict:
+    """
+    PRE de cada municipio no cenario INDIVIDUAL: so aquele municipio atinge o
+    desempenho maximo, todos os outros ficam nos valores reais, e o rateio e'
+    renormalizado.
+
+    E' a resposta a pergunta "quanto ESTE municipio receberia se batesse os
+    indices maximos?" - diferente do cenario COLETIVO (todos no maximo ao mesmo
+    tempo), em que o IQEM de todos se iguala e o rateio degenera para uma
+    divisao proporcional as matriculas.
+
+    `cenario_maximo` e' uma funcao IndicadoresMunicipio -> IndicadoresMunicipio
+    (definida em consolidar_calcular_sp.py, onde estao documentadas as escolhas
+    do que e' "maximo").
+
+    ATENCAO ao interpretar: os valores devolvidos NAO somam 1,0. Cada um vem de
+    um cenario contrafactual diferente (um municipio de cada vez no maximo),
+    entao eles nao formam um rateio unico e nao podem ser somados.
+    """
+    pesos = {m.nome: iqem_2025(m) * m.numero_matriculas for m in municipios}
+    total = sum(pesos.values())
+    resultado = {}
+    for m in municipios:
+        peso_maximo = iqem_2025(cenario_maximo(m)) * m.numero_matriculas
+        denominador = total - pesos[m.nome] + peso_maximo
+        resultado[m.nome] = peso_maximo / denominador if denominador else 0.0
+    return resultado
+
+
+# ---------------------------------------------------------------------------
+# 1b. DO PRE AO VALOR EM R$ (peso do criterio educacao dentro do IPM)
+# ---------------------------------------------------------------------------
+# O PRE e' uma participacao relativa DENTRO do criterio educacao. Para chegar em
+# reais faltam duas etapas: (1) quanto o criterio educacao pesa no IPM, e (2)
+# qual o valor de ICMS repassado aos municipios no periodo.
+#
+# FONTE DO PESO (etapa 1) - Lei 17.575/2022, art. 2o, inciso I, que acrescenta o
+# inciso X ao art. 1o da Lei 3.201/1981: o criterio educacao entra escalonado em
+# 10% (ano-base 2023), 11% (2024), 12% (2025) e 13% (2026). Em paralelo, o art.
+# 1o, inciso I da mesma lei reduz o criterio populacao (3%, 2%, 1%, extinto em
+# 2026) - ou seja, o criterio educacao ocupa progressivamente o espaco que era
+# da populacao.
+#
+# VALIDACAO INDEPENDENTE: esses pesos nao foram apenas lidos na lei, eles foram
+# REPRODUZIDOS a partir do IPM oficial publicado pela Sefaz-SP. A decomposicao
+# em scripts/coleta_ipm_sefaz.py recalcula o IPM dos 645 municipios a partir das
+# participacoes de cada criterio e recupera os pesos com erro da ordem de 1e-6
+# ponto percentual - confirmando 11% para o ano-base 2024 e 12% para 2025.
+PESO_CRITERIO_EDUCACAO_POR_ANO_BASE = {
+    2023: 0.10,
+    2024: 0.11,
+    2025: 0.12,
+    2026: 0.13,
+}
+# Regime pleno: a partir do ano-base 2026 o peso estabiliza em 13% e o criterio
+# populacao desaparece. E' o peso que a lei preve em regime permanente.
+PESO_CRITERIO_EDUCACAO_REGIME_PLENO = 0.13
+
+# O IPM calculado sobre os dados de um ano-base rege os repasses do ano civil
+# ano_base + 2. Verificado empiricamente contra os dados oficiais: com o IPM de
+# ano-base 2024, a identidade repasse_i = IPM_i x total_do_Estado reproduz os
+# repasses de 2026 com dispersao de 0,04% entre municipios de portes muito
+# diferentes (contra ~3% se testada contra 2025, ou seja, outro ano-base).
+# Consequencia: o peso de 13% (ano-base 2026) vale para os repasses de 2028 -
+# o mesmo exercicio em que a formula nova do IQEM passa a valer.
+DEFASAGEM_ANO_BASE_REPASSE = 2
+
+
+def ano_base_do_repasse(ano_civil_do_repasse: int) -> int:
+    """Ano-base do IPM que rege os repasses de um ano civil (ver constante acima)."""
+    return ano_civil_do_repasse - DEFASAGEM_ANO_BASE_REPASSE
+
+
+def peso_criterio_educacao(ano_base: int, regime_pleno: bool = False) -> float:
+    """
+    Peso do criterio educacao no IPM para um ano-base.
+
+    regime_pleno=True devolve sempre 13% (o peso permanente da lei), para
+    simular o efeito da regra ja madura sobre um periodo cujo peso vigente
+    ainda e' menor. Isso e' um CENARIO, nao o peso em vigor naquele ano - o
+    painel rotula as duas leituras.
+    """
+    if regime_pleno:
+        return PESO_CRITERIO_EDUCACAO_REGIME_PLENO
+    if ano_base in PESO_CRITERIO_EDUCACAO_POR_ANO_BASE:
+        return PESO_CRITERIO_EDUCACAO_POR_ANO_BASE[ano_base]
+    if ano_base > max(PESO_CRITERIO_EDUCACAO_POR_ANO_BASE):
+        return PESO_CRITERIO_EDUCACAO_REGIME_PLENO  # a lei estabiliza em 13%
+    raise ValueError(
+        f"Ano-base {ano_base} anterior a 2023: o criterio educacao nao existia no IPM "
+        "(criado pela Lei 17.575/2022, com efeitos a partir do ano-base 2023)."
+    )
+
+
+def contribuicao_ipm_educacao(pre: float, peso_educacao: float) -> float:
+    """
+    Contribuicao do municipio no IPM vinda do criterio educacao.
+
+        contribuicao = peso_do_criterio x PRE
+
+    Somada entre todos os municipios, da exatamente o peso do criterio (ex.:
+    0,11 para o ano-base 2024) - e' a fatia do IPM que a educacao explica.
+    """
+    return peso_educacao * pre
+
+
+def parcela_educacao_reais(pre: float, peso_educacao: float,
+                           valor_icms_periodo_estado: float) -> float:
+    """
+    Valor em R$ que o municipio recebe pelo criterio educacao no periodo:
+
+        parcela = peso_do_criterio x PRE x ICMS repassado aos municipios no periodo
+
+    `valor_icms_periodo_estado` e' o total do ESTADO (soma dos 645 municipios),
+    nao o repasse do proprio municipio - o PRE e' uma fatia normalizada no
+    Estado, entao as duas grandezas tem que estar na mesma escala. Ver
+    scripts/coleta_repasse_icms_sefaz.py para a fonte e para a diferenca entre
+    valor liquido (pos-FUNDEB, o que a Sefaz publica) e bruto.
+    """
+    return contribuicao_ipm_educacao(pre, peso_educacao) * valor_icms_periodo_estado
+
+
 def cota_parte_recebida(valor_icms_total_municipio: float,
                          indice_participacao_icms_educacional: float) -> float:
-    """Cota Parte Recebida = Valor ICMS do municipio * indice de participacao"""
+    """
+    ATENCAO - NAO E' A CADEIA OFICIAL. Use parcela_educacao_reais().
+
+    Esta funcao existe so para reproduzir a aritmetica do slide 8 de
+    ICMS_Fundeb_CD.pptx (ver exemplo_cotia_2024), preservada para rastrear de
+    onde vieram os numeros dos entregaveis de setembro/2026. Ela multiplica o
+    valor de ICMS DO PROPRIO MUNICIPIO por um indice que e' normalizado no
+    ESTADO (soma 1,0 entre os 645) - as duas escalas nao se combinam, e o
+    resultado sai cerca de uma ordem de grandeza abaixo da cadeia correta.
+    """
     return valor_icms_total_municipio * indice_participacao_icms_educacional
 
 
 def perda_receita_estimada(cota_parte_maxima: float, cota_parte_recebida_: float) -> float:
+    """Idem: aritmetica do slide, mantida so para rastreabilidade."""
     return cota_parte_maxima - cota_parte_recebida_
 
 

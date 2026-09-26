@@ -130,9 +130,16 @@ máximo. Saída em `data/processed/painel_icms_sp.csv`.
    fonte. Recomenda-se citar essa fonte no relatório e, se possível,
    confirmar com o professor/Seduc-SP se existe mesmo um gate binário.
 
-2. **Valor total do "bolo" de ICMS Educacional (R$) — achamos números
-   conflitantes na imprensa, sinalizando com clareza a ambiguidade em vez
-   de escolher um às cegas:**
+2. **Valor total do "bolo" de ICMS Educacional (R$) — RESOLVIDO em
+   26/09/2026.** A pendência abaixo (registrada em 12/09) está superada:
+   encontramos a fonte oficial do valor repassado e confirmamos, na
+   legislação, o peso do critério educação. Ver a seção **"Cadeia até o
+   valor em R$"** no fim deste documento. Em resumo: a premissa que
+   estávamos supondo — de que os 13% incidem sobre a cota-parte municipal
+   (os 25% do ICMS), e não sobre o ICMS total do Estado — **está
+   confirmada**, porque o critério educação é um dos critérios do IPM, e o
+   IPM é justamente o índice que rateia a cota-parte municipal. O registro
+   original da dúvida fica abaixo, para rastreabilidade:
    - Uma reportagem (Agência Brasil, 10/2025) escreveu: *"o valor total em
      discussão é de cerca de R$ 800 milhões, ou 13% do valor arrecadado
      com o ICMS no estado"* — mas isso é **matematicamente incompatível**
@@ -182,6 +189,181 @@ antiga) para ~13,8% (simulado, fórmula nova) de participação — a fórmula
 antiga super-representa cidades grandes só pelo tamanho da população;
 cidades médias com bom desempenho relativo (Guarulhos, Osasco, Barueri)
 ganhariam participação.
+
+## Cadeia até o valor em R$ (implementada em 26/09/2026)
+
+Até 12/09/2026 o painel parava na **participação relativa** (`pre_real`,
+que soma 1,0 entre os municípios). Faltavam duas etapas para chegar em
+reais, e as duas foram fechadas com fonte oficial:
+
+```
+componentes (IQA, IQI, ISE, PATI)
+  → IQEM
+  → PRE = participação no critério educação
+  → × peso do critério educação no IPM        (etapa 1)
+     = contribuição do município no IPM via educação
+  → × ICMS repassado aos municípios no período (etapa 2)
+     = parcela repassada em R$
+```
+
+### Etapa 1 — peso do critério educação no IPM
+
+**Fonte legal:** Lei 17.575/2022, **art. 2º, inciso I**, que acrescenta o
+**inciso X ao art. 1º da Lei 3.201/1981**. O critério entra escalonado:
+
+| Ano-base | Critério educação | Critério população |
+|---|---|---|
+| 2023 | 10% | 3% |
+| 2024 | 11% | 2% |
+| 2025 | 12% | 1% |
+| 2026 em diante | **13%** | extinto |
+
+A redução do critério população está no **art. 1º, inciso I** da mesma lei
+— ou seja, o critério educação ocupa progressivamente o espaço que era da
+população.
+
+**Validação independente, sem depender de fonte secundária:** o IPM
+publicado pela Sefaz-SP é uma soma ponderada das participações de cada
+critério, e todas essas participações estão no próprio relatório do DIPAM.
+`scripts/coleta_ipm_sefaz.py` recupera os pesos por mínimos quadrados e
+**reproduz o IPM oficial dos 645 municípios com erro máximo de 5,5 × 10⁻⁶
+ponto percentual** — praticamente ponto flutuante. Os pesos recuperados:
+
+| Critério | Ano-base 2024 | Ano-base 2025 |
+|---|---|---|
+| Valor adicionado (média das participações de 2 anos) | 74% | 74% |
+| **Cota-parte educação** | **11%** | **12%** |
+| Receita tributária própria | 5% | 5% |
+| Área cultivada | 3% | 3% |
+| População | 2% | 1% |
+| Igual para todos | 2% | 2% |
+| Área protegida | 1% | 1% |
+| Vegetação nativa | 1% | 1% |
+| Área inundada | 0,5% | 0,5% |
+| Resíduos sólidos | 0,5% | 0,5% |
+
+Isso bate exatamente com a tabela legal acima — os pesos estão
+confirmados por duas vias independentes. A decomposição fica gravada em
+`data/processed/pesos_ipm_{ano}.csv`, com o erro de reprodução na própria
+tabela, para auditoria.
+
+**Detalhe que muda o resultado:** a coluna de valor adicionado do IPM é a
+*média das participações* dos dois anos, não a *participação da média* dos
+valores. Usar a segunda forma deixa um resíduo ~600× maior e distorce os
+pesos recuperados (educação sai 11,03% em vez de 11,00%).
+
+**Calendário — o "13%" não vale para hoje.** O IPM calculado sobre um
+ano-base rege os repasses do ano civil **ano-base + 2**. Verificamos isso
+contra o dado oficial: com o IPM de ano-base 2024, a identidade
+`repasse_i = IPM_i × total_do_Estado` reproduz os repasses de 2026 com
+dispersão de 0,04% entre municípios de portes muito diferentes (contra
+~3% se testada contra 2025, isto é, outro ano-base). Logo:
+
+- repasse de 2026 → ano-base 2024 → peso **11%**
+- repasse de 2027 → ano-base 2025 → peso **12%**
+- repasse de 2028 → ano-base 2026 → peso **13%**
+
+Ou seja, **os 13% valem a partir do repasse de 2028 — o mesmo exercício em
+que a fórmula nova do IQEM passa a valer.** O painel mostra as duas
+leituras: o peso *vigente* no período escolhido e o *regime pleno* de 13%,
+sempre rotuladas.
+
+### Etapa 2 — valor do ICMS repassado no período
+
+**Fonte:** Sefaz-SP, "Repasse de Tributos a Municípios"
+(`https://www.fazenda.sp.gov.br/RepasseConsulta/Consulta/repasse.aspx`),
+coletado por `scripts/coleta_repasse_icms_sefaz.py`. Município a município,
+mês a mês, anos de 1995 a 2026 — o total do Estado é a **soma dos 645
+municípios**, não uma estimativa.
+
+**O que esse valor é** (respondendo à pergunta "já é a cota-parte de 25% ou
+é o total arrecadado?"): é a **quota-parte municipal efetivamente
+creditada**, ou seja, já é a parcela dos municípios (os 25% do art. 158,
+IV da Constituição) **e já está líquida da retenção de 20% do FUNDEB**.
+Isso está na nota de rodapé da própria página: *"A partir de março de 2007
+valores líquidos, descontados o montante transferido para o FUNDEB, de
+acordo com a Lei 11.494 de 20/06/2007 [...] a partir de janeiro de 2009,
+valores com desconto de 20%"*.
+
+Por isso o painel traz **duas escalas**, ambas rotuladas e nenhuma
+estimada:
+
+- **líquido** — exatamente o que a Sefaz publica (pós-FUNDEB). É o dinheiro
+  que entra no caixa do município.
+- **bruto** — líquido ÷ 0,80, a cota-parte de 25% antes da retenção.
+
+**Ano corrente:** o relatório traz apenas os meses já publicados. O script
+detecta o último mês e grava `meses_publicados`, e o painel rotula o
+período ("2026 · até setembro"), para não comparar um ano parcial com um
+ano fechado sem avisar.
+
+**Ordem de grandeza conferida contra outra fonte da própria Sefaz:** a
+assessoria da Sefaz-SP noticiou que nos onze primeiros meses de 2025 os
+repasses de ICMS aos municípios somaram R$ 42,95 bilhões — consistente com
+o total anual que a coleta produz.
+
+### Parcela cheia — cenário individual, não coletivo
+
+O `pre_maxima_hipotetica` que já existia coloca **todos** os municípios no
+máximo ao mesmo tempo. Como o IQEM de todos se iguala (~8,1), o rateio
+degenera para uma divisão proporcional às matrículas. Isso é útil para
+**isolar o efeito da qualidade** sobre a fatia, mas não responde "quanto
+este município receberia se batesse as metas" — num cenário em que todos
+melhoram junto, ninguém ganha participação.
+
+A **parcela cheia** usa o cenário **individual**
+(`participacao_com_um_no_maximo`): só aquele município vai ao máximo, os
+demais ficam nos valores reais, e o rateio é renormalizado. As duas
+colunas convivem no painel, cada uma com seu rótulo.
+
+**Ressalva obrigatória:** a coluna de parcela cheia **não é somável**. Cada
+valor vem de um cenário contrafactual diferente, então a soma da coluna não
+descreve cenário nenhum. A soma das parcelas *repassadas*, sim, fecha
+exatamente com o bolo do critério (peso × ICMS do período).
+
+### Casamento de períodos — o contrafactual é deliberado
+
+A fórmula do IQEM que simulamos (Lei 18.381/2025, 100% qualidade) só vale a
+partir do ano-base 2026, com repasse em 2028. Aplicá-la ao dinheiro de
+2025/2026 é **deliberadamente um contrafactual**: mostra como aquele valor
+teria sido dividido se a regra nova já valesse — não uma reconstituição do
+que aconteceu. O painel diz isso na tela, e o relatório precisa dizer
+também.
+
+### Universo de 618 municípios
+
+Como o PRE é renormalizado no universo processado, os 618 municípios com
+dado educacional completo dividem entre si **100%** do bolo do critério, e
+os 27 ausentes ficam com zero. Medimos o tamanho dessa distorção na fonte
+oficial: **os 27 ausentes detêm 0,835% da cota-parte educação da Sefaz**, e
+0,63 p.p. disso é um único município (Mauá). O número vai no painel, na
+coluna `cota_parte_educacao_oficial_fora_do_painel_pct`, para não deixar a
+premissa implícita.
+
+## Correção pendente nos entregáveis de setembro/2026
+
+O exemplo de Cotia (`exemplo_cotia_2024()` na calculadora, vindo do slide 8
+de `ICMS_Fundeb_CD.pptx`) tem uma **inconsistência de escala** que
+provavelmente contaminou o número de "perda de receita" dos entregáveis:
+
+- `recebida = 341.357.089,75 × 0,009307459` multiplica o valor de ICMS **do
+  próprio município** por um índice que é **normalizado no Estado** (soma
+  1,0 entre os 645). As duas escalas não se combinam.
+- `cota_parte_maxima = 34.135.708,98` é, exatamente, **10% de
+  341.357.089,75** — o peso do critério educação aplicado ao repasse do
+  próprio município (o que equivale a supor PRE = IPM), não um cenário de
+  desempenho máximo.
+- Além disso, R$ 341.357.089,75 é o ICMS repassado a Cotia no ano civil
+  **2025** (confere centavo a centavo com a consulta da Sefaz), e não em
+  2024 como diz o rótulo do slide.
+
+Pela cadeia correta (`peso × PRE × total do Estado`), a parcela educacional
+de Cotia fica **cerca de uma ordem de grandeza acima** dos R$ 3,18 milhões
+do slide. As funções `cota_parte_recebida()` e `perda_receita_estimada()`
+foram **mantidas** no código, com aviso no docstring, só para rastrear de
+onde vieram os números antigos — a cadeia correta está em
+`parcela_educacao_reais()`. **Decisão pendente com o professor:** corrigir
+ou não o relatório e a apresentação de setembro.
 
 ## Recomendação para o relatório final
 
