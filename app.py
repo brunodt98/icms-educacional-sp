@@ -31,37 +31,49 @@ st.set_page_config(
     page_title="ICMS Educacional SP",
     page_icon="🏫",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 # ===========================================================================
 # DESIGN TOKENS
 # ===========================================================================
-SURFACE = "#fcfcfb"
-PLANE = "#f9f9f7"
-INK = "#0b0b0b"
-INK_2 = "#52514e"
-MUTED = "#898781"
-GRID = "#e1e0d9"
-AXIS = "#c3c2b7"
+# Paleta institucional: azul-marinho e vermelho da bandeira paulista, com o
+# vermelho conversando com a identidade do Centro Paula Souza (FATEC). O
+# dourado marca apenas o estado ativo da navegacao.
+SURFACE = "#ffffff"
+PLANE = "#f4f3ef"
+INK = "#14161a"
+INK_2 = "#4a4f57"
+MUTED = "#767c86"
+GRID = "#e3e1da"
+AXIS = "#c9c7bf"
 
-BLUE = "#2a78d6"        # cenario simulado (formula nova)
-BLUE_SOFT = "#9ec5f4"   # cenario maximo hipotetico
-BLUE_DEEP = "#184f95"
-NEUTRAL = "#898781"     # baseline: oficial de hoje (formula antiga)
-CRITICAL = "#d03b3b"    # linha de media / alerta
-ORANGE = "#eb6834"
+NAVY_DEEP = "#0b1f3d"   # barra lateral
+NAVY = "#12305c"        # institucional - serie principal
+NAVY_LINE = "#1e3a63"   # divisorias sobre o navy
+NAVY_TINT = "#16386a"   # item ativo / campo na lateral
+BLUE = "#2c6bb8"        # cenario simulado (formula nova)
+BLUE_SOFT = "#a9c6e8"   # cenario maximo hipotetico
+BLUE_DEEP = "#12305c"
+GOLD = "#e8b33a"        # marcador de selecao
+NEUTRAL = "#767c86"     # baseline: oficial de hoje (formula antiga)
+CRITICAL = "#b7202e"    # linha de media / alerta / perda
+ORANGE = "#c2601f"
+
+ON_NAVY = "#c6d4e6"     # texto secundario sobre a lateral
+ON_NAVY_DIM = "#9fb2cc"
 
 SEQ_BLUE = [
-    "#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec",
-    "#5598e7", "#3987e5", "#2a78d6", "#256abf", "#1c5cab",
-    "#184f95", "#104281", "#0d366b",
+    "#dce6f3", "#c5d7ec", "#a9c6e8", "#8db4e0", "#6fa0d8",
+    "#5590cd", "#3f7ec2", "#2c6bb8", "#245ca2", "#1d4d8a",
+    "#12305c", "#0e2749", "#0b1f3d",
 ]
 DIV_BLUE_RED = [
-    [0.0, "#d03b3b"], [0.25, "#e88f8f"], [0.5, "#f0efec"],
-    [0.75, "#86b6ef"], [1.0, "#184f95"],
+    [0.0, "#b7202e"], [0.25, "#dd8a8a"], [0.5, "#f0efec"],
+    [0.75, "#8db4e0"], [1.0, "#12305c"],
 ]
-SANS = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+SANS = '"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif'
+SERIF = '"Source Serif 4", Georgia, "Times New Roman", serif'
 
 # ===========================================================================
 # TEMPLATE PLOTLY
@@ -113,34 +125,99 @@ PLOT_CFG = {"displayModeBar": False, "scrollZoom": False}
 st.markdown(
     f"""
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
+
   .stApp {{ background: {PLANE}; }}
   [data-testid="stHeader"] {{ background: transparent; }}
   [data-testid="stMainBlockContainer"] {{
-      padding: 2.2rem 2.4rem 4rem; max-width: 1480px;
+      padding: 1.9rem 2.4rem 4rem; max-width: 1480px;
   }}
   html, body, [class*="st-"] {{ font-family: {SANS}; }}
 
+  /* ---------- barra lateral (navegacao + filtros) ---------- */
+  [data-testid="stSidebar"] {{
+      background: {NAVY_DEEP}; border-right: 0;
+  }}
+  [data-testid="stSidebar"] [data-testid="stSidebarContent"] {{
+      padding: 1.5rem 1.15rem 1.2rem;
+  }}
+  [data-testid="stSidebar"] * {{ color: #ffffff; }}
+  [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {{
+      font-size: .76rem !important; color: {ON_NAVY_DIM}; font-weight: 500;
+  }}
+  /* rotulo de grupo (Painel / Filtros) */
+  .side-lbl {{
+      font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+      color: #7e93b3; margin: .1rem 0 .55rem;
+  }}
+  .side-rule {{ height: 1px; background: {NAVY_LINE}; margin: 1.15rem 0; }}
+  /* marca institucional */
+  .side-brand {{ display: flex; align-items: center; gap: .72rem; }}
+  .side-brand .mark {{ flex: 0 0 auto; }}
+  .side-brand .nm {{
+      font-family: {SERIF}; font-size: 1.02rem; font-weight: 600;
+      letter-spacing: -.01em; line-height: 1.15; color: #fff;
+  }}
+  .side-brand .uf {{
+      font-size: .68rem; letter-spacing: .05em; text-transform: uppercase;
+      color: {ON_NAVY_DIM}; margin-top: .12rem;
+  }}
+  /* rodape: FATEC Cotia */
+  .side-foot {{
+      display: flex; align-items: center; gap: .65rem;
+      padding-top: .95rem; border-top: 1px solid {NAVY_LINE}; margin-top: .6rem;
+  }}
+  .side-foot .sigla {{
+      width: 30px; height: 30px; border-radius: 6px; background: {CRITICAL};
+      display: flex; align-items: center; justify-content: center;
+      font-size: .66rem; font-weight: 600; color: #fff; flex: 0 0 auto;
+  }}
+  .side-foot .txt {{ font-size: .68rem; color: {ON_NAVY_DIM}; line-height: 1.4; }}
+  .side-foot .txt b {{ color: #fff; font-weight: 500; }}
+  /* navegacao: radio virando lista de secoes */
+  [data-testid="stSidebar"] [role="radiogroup"] {{ gap: .18rem; }}
+  [data-testid="stSidebar"] [role="radiogroup"] label {{
+      padding: .5rem .65rem; border-radius: 7px;
+      border-left: 3px solid transparent; font-size: .84rem;
+  }}
+  [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {{
+      background: {NAVY_TINT}; border-left-color: {GOLD}; font-weight: 500;
+  }}
+  [data-testid="stSidebar"] [role="radiogroup"] label p {{
+      color: {ON_NAVY}; font-size: .84rem !important;
+  }}
+  [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) p {{
+      color: #fff;
+  }}
+  /* campos na lateral */
+  [data-testid="stSidebar"] [data-baseweb="select"] > div,
+  [data-testid="stSidebar"] [data-testid="stTextInput"] input {{
+      background: #112b52; border-color: #2a4b7c; color: #fff;
+      border-radius: 7px; font-size: .82rem;
+  }}
+  [data-testid="stSidebar"] [data-baseweb="radio"] svg {{ fill: {GOLD}; }}
+
   /* ---------- cabecalho ---------- */
   .eyebrow {{
-      font-size: .72rem; font-weight: 600; letter-spacing: .09em;
-      text-transform: uppercase; color: {MUTED}; margin-bottom: .5rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: {MUTED}; margin-bottom: .45rem;
   }}
   h1.hero {{
-      font-size: 2.15rem; font-weight: 680; letter-spacing: -.022em;
-      color: {INK}; margin: 0 0 .5rem; line-height: 1.15;
+      font-family: {SERIF}; font-size: 2.05rem; font-weight: 600;
+      letter-spacing: -.022em; color: {INK}; margin: 0 0 .45rem; line-height: 1.1;
   }}
   .lede {{
-      font-size: .98rem; color: {INK_2}; max-width: 68ch;
-      line-height: 1.55; margin-bottom: 1rem;
+      font-size: .93rem; color: {INK_2}; max-width: 74ch;
+      line-height: 1.55; margin-bottom: .9rem;
   }}
   .badge {{
       display: inline-flex; align-items: center; gap: .5rem;
-      font-size: .78rem; color: {INK_2}; background: #fff6e6;
-      border: 1px solid #f0d9a8; border-radius: 999px;
+      font-size: .76rem; color: #7a5200; background: #fdf3dc;
+      border: 1px solid #e8ce96; border-radius: 999px;
       padding: .32rem .85rem; margin-bottom: .2rem;
   }}
-  .badge b {{ color: #8a5d00; font-weight: 640; }}
-  .rule {{ height: 1px; background: {GRID}; margin: 1.6rem 0 1.4rem; border: 0; }}
+  .badge b {{ color: #7a5200; font-weight: 600; }}
+  .rule {{ height: 1px; background: {GRID}; margin: 1.35rem 0 1.2rem; border: 0; }}
 
   /* ---------- titulos de secao ---------- */
   .sec {{ margin: 1.9rem 0 .85rem; }}
@@ -153,15 +230,16 @@ st.markdown(
   /* ---------- stat tiles ---------- */
   [data-testid="stMetric"] {{
       background: {SURFACE}; border: 1px solid {GRID};
-      border-radius: 10px; padding: .95rem 1.05rem;
+      border-top: 3px solid {NAVY}; border-radius: 10px; padding: .95rem 1.05rem;
   }}
   [data-testid="stMetricLabel"] p {{
       font-size: .76rem !important; font-weight: 550; color: {MUTED};
       letter-spacing: .01em; line-height: 1.3;
   }}
   [data-testid="stMetricValue"] {{
-      font-size: 1.72rem !important; font-weight: 640; color: {INK};
-      letter-spacing: -.02em; font-variant-numeric: proportional-nums;
+      font-family: {SERIF}; font-size: 1.68rem !important; font-weight: 600;
+      color: {INK}; letter-spacing: -.02em;
+      font-variant-numeric: proportional-nums;
   }}
   [data-testid="stMetricDelta"] {{ font-size: .76rem !important; font-weight: 550; }}
 
@@ -183,18 +261,6 @@ st.markdown(
   }}
   .mini p {{ font-size: .7rem; color: {MUTED}; margin: 0 0 .1rem; }}
   .mini .avg {{ font-size: .72rem; color: {CRITICAL}; font-weight: 580; }}
-
-  /* ---------- abas ---------- */
-  .stTabs [data-baseweb="tab-list"] {{
-      gap: .35rem; border-bottom: 1px solid {GRID}; padding-bottom: 0;
-  }}
-  .stTabs [data-baseweb="tab"] {{
-      height: 2.5rem; padding: 0 .95rem; font-size: .88rem; font-weight: 550;
-      color: {MUTED}; background: transparent; border-radius: 8px 8px 0 0;
-  }}
-  .stTabs [aria-selected="true"] {{ color: {BLUE}; font-weight: 620; }}
-  .stTabs [data-baseweb="tab-highlight"] {{ background: {BLUE}; height: 2px; }}
-  .stTabs [data-baseweb="tab-border"] {{ display: none; }}
 
   /* ---------- nota final ---------- */
   .note {{
@@ -332,12 +398,11 @@ MESES_NOME = {
 # ===========================================================================
 st.markdown(
     f"""
-<div class='eyebrow'>Projeto Integrador V · FATEC Cotia · Grupo 2</div>
-<h1 class='hero'>ICMS Educacional de São Paulo</h1>
+<h1 class='hero'>Cota-parte educacional do ICMS</h1>
 <p class='lede'>
-  Simulação de quanto cada município receberia na cota-parte educacional do ICMS
-  sob a fórmula da Lei 17.575/2022, alterada pela Lei 18.381/2025 — métrica por
-  métrica, para {N} dos 645 municípios do Estado.
+  Quanto cada município recebe pelo critério educação — e quanto receberia no
+  desempenho máximo — sob a fórmula da Lei 17.575/2022, alterada pela Lei
+  18.381/2025, para {N} dos 645 municípios do Estado.
 </p>
 <div class='badge'><b>Simulação</b> · IQA/IQI usam IDEB/SAEB como proxy do SARESP
 municipal — resultado oficial só a partir de 2027/2028</div>
@@ -349,10 +414,11 @@ municipal — resultado oficial só a partir de 2027/2028</div>
 # ===========================================================================
 # CONTROLES GLOBAIS - periodo, regime de peso e escala do valor
 # ===========================================================================
-# Ficam acima das abas de proposito: o periodo muda o valor em R$ mostrado em
-# "Visão geral" e em "Por município", e um seletor por aba sairia do ar de
-# sincronia entre as duas.
-ctrl_periodo, ctrl_regime, ctrl_escala = st.columns([1, 1.5, 1.5], gap="medium")
+# Ficam na barra lateral fixa, no padrao de app de BI: o periodo muda o valor em
+# R$ mostrado em "Visão geral" e em "Por município", e um seletor por secao
+# sairia do ar de sincronia entre as duas. A navegacao entre as secoes fica no
+# mesmo lugar, sempre visivel.
+SECOES = ["Visão geral", "Por município", "Tabela completa", "Metodologia"]
 
 periodos = sorted(TODOS["periodo"].unique(), reverse=True)
 
@@ -364,42 +430,75 @@ def rotulo_periodo(p: int) -> str:
     return f"{p} · até {MESES_NOME[int(linha['meses_publicados'])]}"
 
 
-periodo_sel = ctrl_periodo.selectbox(
-    "Período do repasse", periodos, format_func=rotulo_periodo,
-    help="Ano civil em que o ICMS foi repassado aos municípios. O ano corrente "
-         "traz o acumulado até o último mês publicado pela Sefaz-SP.",
-)
+# A marca e' um sinal grafico proprio do painel (faixas diagonais nas cores da
+# bandeira paulista), NAO o brasao oficial do Estado: este e' um trabalho
+# academico, nao uma publicacao do governo. Ver LIMITACOES_METODOLOGICAS.md.
+MARCA_SVG = f"""
+<svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true" class="mark">
+  <rect x="0" y="0" width="38" height="38" rx="7" fill="#ffffff"></rect>
+  <path d="M0 26 L38 6 L38 13 L0 33 Z" fill="{CRITICAL}"></path>
+  <path d="M0 15 L38 -5 L38 2 L0 22 Z" fill="{NAVY}"></path>
+  <rect x="0" y="0" width="38" height="38" rx="7" fill="none"
+        stroke="{NAVY}" stroke-width="1.5"></rect>
+</svg>"""
 
-_linha_periodo = TODOS[TODOS["periodo"] == periodo_sel].iloc[0]
-ANO_BASE = int(_linha_periodo["ano_base_ipm"])
-MESES_PUB = int(_linha_periodo["meses_publicados"])
-_peso_vigente = TODOS[
-    (TODOS["periodo"] == periodo_sel) & (TODOS["regime_peso"] == "vigente")
-]["peso_criterio_educacao"].iloc[0]
+with st.sidebar:
+    st.markdown(
+        f"""<div class='side-brand'>{MARCA_SVG}
+        <div><div class='nm'>ICMS Educacional</div>
+        <div class='uf'>Estado de São Paulo</div></div></div>""",
+        unsafe_allow_html=True,
+    )
+    st.markdown("<div class='side-rule'></div>", unsafe_allow_html=True)
 
-regime_sel = ctrl_regime.radio(
-    "Peso do critério educação no IPM",
-    ["vigente", "pleno"], horizontal=True,
-    format_func=lambda r: (
-        f"Vigente · {_peso_vigente:.0%} (ano-base {ANO_BASE})" if r == "vigente"
-        else "Regime pleno · 13%"
-    ),
-    help="A Lei 17.575/2022 (art. 2º, I) escalona o critério educação: 10% no ano-base "
-         "2023, 11% em 2024, 12% em 2025 e 13% a partir de 2026. 'Vigente' usa o peso "
-         "realmente em vigor no período; 'regime pleno' aplica os 13% da regra madura, "
-         "o que é um cenário, não um valor histórico.",
-)
+    st.markdown("<div class='side-lbl'>Painel</div>", unsafe_allow_html=True)
+    SECAO = st.radio("Seção", SECOES, label_visibility="collapsed")
 
-escala_sel = ctrl_escala.radio(
-    "Escala do valor de ICMS",
-    ["liquido", "bruto"], horizontal=True,
-    format_func=lambda e: (
-        "Líquido · pós-Fundeb" if e == "liquido" else "Bruto · cota-parte de 25%"
-    ),
-    help="A Sefaz-SP publica o valor líquido, já descontados os 20% retidos para o "
-         "Fundeb (Lei 11.494/2007) — é o dinheiro que entra no caixa do município. "
-         "O bruto é esse valor ÷ 0,80, ou seja, a cota-parte de 25% antes da retenção.",
-)
+    st.markdown("<div class='side-rule'></div>", unsafe_allow_html=True)
+    st.markdown("<div class='side-lbl'>Filtros</div>", unsafe_allow_html=True)
+
+    periodo_sel = st.selectbox(
+        "Período do repasse", periodos, format_func=rotulo_periodo,
+        help="Ano civil em que o ICMS foi repassado aos municípios. O ano corrente "
+             "traz o acumulado até o último mês publicado pela Sefaz-SP.",
+    )
+
+    _linha_periodo = TODOS[TODOS["periodo"] == periodo_sel].iloc[0]
+    ANO_BASE = int(_linha_periodo["ano_base_ipm"])
+    MESES_PUB = int(_linha_periodo["meses_publicados"])
+    _peso_vigente = TODOS[
+        (TODOS["periodo"] == periodo_sel) & (TODOS["regime_peso"] == "vigente")
+    ]["peso_criterio_educacao"].iloc[0]
+
+    regime_sel = st.radio(
+        "Peso do critério educação",
+        ["vigente", "pleno"],
+        format_func=lambda r: (
+            f"Vigente · {_peso_vigente:.0%} (ano-base {ANO_BASE})" if r == "vigente"
+            else "Regime pleno · 13%"
+        ),
+        help="A Lei 17.575/2022 (art. 2º, I) escalona o critério educação: 10% no ano-base "
+             "2023, 11% em 2024, 12% em 2025 e 13% a partir de 2026. 'Vigente' usa o peso "
+             "realmente em vigor no período; 'regime pleno' aplica os 13% da regra madura, "
+             "o que é um cenário, não um valor histórico.",
+    )
+
+    escala_sel = st.radio(
+        "Escala do valor de ICMS",
+        ["liquido", "bruto"],
+        format_func=lambda e: (
+            "Líquido · pós-Fundeb" if e == "liquido" else "Bruto · cota-parte de 25%"
+        ),
+        help="A Sefaz-SP publica o valor líquido, já descontados os 20% retidos para o "
+             "Fundeb (Lei 11.494/2007) — é o dinheiro que entra no caixa do município. "
+             "O bruto é esse valor ÷ 0,80, ou seja, a cota-parte de 25% antes da retenção.",
+    )
+
+    st.markdown(
+        "<div class='side-foot'><div class='sigla'>FT</div>"
+        "<div class='txt'>Projeto Integrador V<br><b>FATEC Cotia</b></div></div>",
+        unsafe_allow_html=True,
+    )
 
 df = TODOS[
     (TODOS["periodo"] == periodo_sel) & (TODOS["regime_peso"] == regime_sel)
@@ -427,14 +526,11 @@ st.caption(
     f"aquele valor teria sido dividido sob a regra nova."
 )
 
-aba_geral, aba_municipio, aba_tabela, aba_metodologia = st.tabs(
-    ["Visão geral", "Por município", "Tabela completa", "Metodologia"]
-)
 
 # ===========================================================================
 # ABA 1 - VISAO GERAL
 # ===========================================================================
-with aba_geral:
+if SECAO == "Visão geral":
     ganham = int((df["diferenca_pp_simulado_vs_oficial"] > 0).sum())
     rendem = int((df["efeito_qualidade_pp"] > 0).sum())
 
@@ -658,7 +754,7 @@ with aba_geral:
 # ===========================================================================
 # ABA 2 - POR MUNICIPIO
 # ===========================================================================
-with aba_municipio:
+elif SECAO == "Por município":
     nomes = sorted(df["municipio"])
     municipio_sel = st.selectbox(
         "Município", nomes, width=380,
@@ -877,7 +973,7 @@ with aba_municipio:
 # ===========================================================================
 # ABA 3 - TABELA COMPLETA
 # ===========================================================================
-with aba_tabela:
+elif SECAO == "Tabela completa":
     section("Todos os municípios simulados",
             "Ordenado pelo efeito da qualidade na fatia. Use a busca para filtrar.")
 
@@ -967,7 +1063,7 @@ with aba_tabela:
 # ===========================================================================
 # ABA 4 - METODOLOGIA
 # ===========================================================================
-with aba_metodologia:
+elif SECAO == "Metodologia":
     section("O que é dado real e o que é simulação",
             "A separação entre fonte oficial e aproximação está documentada campo a campo.")
 
