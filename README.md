@@ -237,11 +237,13 @@ Escreve `output/mapa_final_sp.html`.
 - **Sem testes automatizados.** As fórmulas são validadas por conferência
   manual contra os documentos de origem.
 
-## Contexto acadêmico
+## Equipe
 
-Projeto Integrador V — Grupo 2, Fatec Cotia.
+Projeto Integrador V — Grupo 2, Ciência de Dados, Fatec Cotia.
 
-## Autor
-
-**Bruno Silva** — Ciência de Dados, Fatec Cotia
-[linkedin.com/in/brunosilva09](https://linkedin.com/in/brunosilva09)
+- **Bruno Silva** — [linkedin.com/in/brunosilva09](https://linkedin.com/in/brunosilva09)
+- **Gabriel Lima**
+- **Keila Santana**
+- **Jonh Lima**
+- **Cauã Monteiro Silva**
+- **Julia Paulina Gomes**
