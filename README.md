@@ -4,6 +4,13 @@ Painel que simula quanto cada município paulista receberia de ICMS sob o
 critério de educação da Lei 17.575/2022, e compara esse valor com o que ele
 recebe hoje pela regra antiga.
 
+**Painel no ar:**
+[icms-educacional-sp.streamlit.app](https://icms-educacional-sp-hzubqvwdrtfbtmyfhwkchx.streamlit.app)
+
+> Hospedado no plano gratuito do Streamlit Cloud, que hiberna o app após um
+> período sem acesso. Se aparecer a tela de app adormecido, basta clicar no
+> botão e aguardar alguns segundos.
+
 ## Problema
 
 São Paulo mudou a regra de distribuição da cota-parte do ICMS destinada à
