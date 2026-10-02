@@ -296,6 +296,35 @@ st.markdown(
   .cadeia li b {{ color: {INK}; font-weight: 620; }}
   .cadeia .passo {{ color: {MUTED}; font-size: .78rem; }}
 
+  /* ---------- fluxo do ICMS: arrecadacao -> cota-parte -> bolo ---------- */
+  .fluxo {{
+      display: flex; flex-wrap: wrap; align-items: stretch; gap: .35rem;
+      margin: .2rem 0 1.1rem;
+  }}
+  .fluxo .etapa {{
+      flex: 1 1 150px; min-width: 0; background: {SURFACE};
+      border: 1px solid {GRID}; border-radius: 10px; padding: .75rem .9rem;
+  }}
+  .fluxo .etapa.base {{ border-color: {BLUE}; box-shadow: inset 0 0 0 1px {BLUE}; }}
+  .fluxo .etapa.bolo {{ background: {NAVY}; border-color: {NAVY}; }}
+  .fluxo .rot {{ font-size: .72rem; color: {MUTED}; line-height: 1.35; }}
+  .fluxo .val {{
+      font-size: 1.25rem; font-weight: 650; color: {INK};
+      font-variant-numeric: tabular-nums; margin: .15rem 0 .1rem;
+  }}
+  .fluxo .obs {{ font-size: .7rem; color: {MUTED}; line-height: 1.35; }}
+  .fluxo .bolo .rot, .fluxo .bolo .obs {{ color: {ON_NAVY}; }}
+  .fluxo .bolo .val {{ color: #ffffff; }}
+  .fluxo .seta {{
+      flex: 0 0 auto; align-self: center; text-align: center;
+      font-size: .7rem; color: {INK_2}; line-height: 1.25; padding: 0 .1rem;
+  }}
+  .fluxo .seta b {{ display: block; font-size: 1rem; color: {MUTED}; font-weight: 400; }}
+  @media (max-width: 720px) {{
+      .fluxo {{ flex-direction: column; }}
+      .fluxo .seta b {{ display: inline; margin-right: .3rem; }}
+  }}
+
   [data-testid="stElementToolbar"] {{ display: none; }}
 </style>
 """,
@@ -509,9 +538,16 @@ COL_REPASSADA = f"parcela_repassada_{escala_sel}_reais"
 COL_CHEIA = f"parcela_cheia_{escala_sel}_reais"
 COL_DIFERENCA = f"diferenca_{escala_sel}_reais"
 COL_ICMS_MUNI = f"icms_municipal_{escala_sel}_reais"
-ICMS_ESTADO = float(df[f"icms_estado_{escala_sel}_reais"].iloc[0])
+# As colunas icms_estado_* NAO sao a arrecadacao do Estado: sao a soma do que
+# foi repassado aos 645 municipios, ou seja, a cota-parte municipal (25%).
+COTA_PARTE = float(df[f"icms_estado_{escala_sel}_reais"].iloc[0])
+COTA_PARTE_BRUTA = float(df["icms_estado_bruto_reais"].iloc[0])
+COTA_PARTE_LIQUIDA = float(df["icms_estado_liquido_reais"].iloc[0])
+# Arrecadacao estimada de volta a partir da regra constitucional (25% aos
+# municipios). E' uma ordem de grandeza para contexto, nao um dado da Sefaz.
+ICMS_ARRECADADO_EST = COTA_PARTE_BRUTA / 0.25
 PESO = float(df["peso_criterio_educacao"].iloc[0])
-BOLO_EDUCACAO = ICMS_ESTADO * PESO
+BOLO_EDUCACAO = COTA_PARTE * PESO
 FORA_DO_PAINEL_PCT = float(df["cota_parte_educacao_oficial_fora_do_painel_pct"].iloc[0])
 
 _nota_periodo = (
@@ -550,22 +586,63 @@ if SECAO == "Visão geral":
 
     section(
         "O dinheiro do período",
-        "Do ICMS repassado aos municípios até a parcela de cada rede: "
-        "IQEM → participação no critério educação (PRE) → × peso do critério no IPM "
-        "→ × ICMS do período.",
+        "Os percentuais do critério educação não incidem sobre todo o ICMS do Estado: "
+        "incidem sobre a cota-parte dos municípios (25%). Do bolo resultante, cada "
+        "rede recebe a fatia dada pelo seu IQEM.",
     )
+    _base_liq = " base" if escala_sel == "liquido" else ""
+    _base_bru = " base" if escala_sel == "bruto" else ""
+    _nome_base = "líquida" if escala_sel == "liquido" else "bruta"
+    st.markdown(
+        f"""
+<div class='fluxo'>
+  <div class='etapa'>
+    <div class='rot'>ICMS arrecadado pelo Estado</div>
+    <div class='val'>≈ {brl_curto(ICMS_ARRECADADO_EST)}</div>
+    <div class='obs'>estimado: cota-parte bruta ÷ 25%</div>
+  </div>
+  <div class='seta'><b>→</b>25% aos<br>municípios</div>
+  <div class='etapa{_base_bru}'>
+    <div class='rot'>Cota-parte bruta</div>
+    <div class='val'>{brl_curto(COTA_PARTE_BRUTA)}</div>
+    <div class='obs'>antes da retenção do Fundeb</div>
+  </div>
+  <div class='seta'><b>→</b>−20%<br>Fundeb</div>
+  <div class='etapa{_base_liq}'>
+    <div class='rot'>Cota-parte líquida</div>
+    <div class='val'>{brl_curto(COTA_PARTE_LIQUIDA)}</div>
+    <div class='obs'>o que a Sefaz-SP repassa</div>
+  </div>
+  <div class='seta'><b>→</b>× {PESO:.0%}<br>educação</div>
+  <div class='etapa bolo'>
+    <div class='rot'>Bolo do critério educação</div>
+    <div class='val'>{brl_curto(BOLO_EDUCACAO)}</div>
+    <div class='obs'>{PESO:.0%} da cota-parte {_nome_base}, rateado pelo IQEM</div>
+  </div>
+</div>
+""",
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Período {periodo_sel} ({_nota_periodo}). A etapa com borda azul é a base usada "
+        f"no cálculo (escolha em *Escala do valor de ICMS*). Os 20% retidos não somem: "
+        f"voltam pelo Fundeb conforme as matrículas, fora do IPM. Fonte dos repasses: "
+        f"Sefaz-SP, Repasse de Tributos a Municípios."
+    )
+
     d1, d2, d3, d4 = st.columns(4, gap="medium")
     d1.metric(
-        f"ICMS repassado · {periodo_sel}", brl_curto(ICMS_ESTADO),
-        help=f"Soma dos 645 municípios no {_nota_periodo}, valor "
-             f"{'líquido (pós-Fundeb)' if escala_sel == 'liquido' else 'bruto (cota-parte de 25%)'}. "
-             "Fonte: Sefaz-SP, Repasse de Tributos a Municípios.",
+        f"Cota-parte dos municípios · {periodo_sel}", brl_curto(COTA_PARTE),
+        help=f"Os 25% do ICMS que pertencem aos municípios, somados os 645, no "
+             f"{_nota_periodo}. Valor "
+             f"{'líquido (pós-Fundeb)' if escala_sel == 'liquido' else 'bruto (antes do Fundeb)'}. "
+             "Não é a arrecadação total do Estado.",
     )
     d2.metric(
         "Bolo do critério educação", brl_curto(BOLO_EDUCACAO),
-        delta=f"{PESO:.0%} do IPM", delta_color="off",
-        help="É o total acima multiplicado pelo peso do critério educação no IPM. "
-             "É esse valor que o PRE divide entre os municípios.",
+        delta=f"{PESO:.0%} da cota-parte", delta_color="off",
+        help="A cota-parte dos municípios multiplicada pelo peso do critério educação "
+             "no IPM. É esse valor que o PRE divide entre os municípios.",
     )
     d3.metric(
         "Parcela mediana por município", brl_curto(df[COL_REPASSADA].median()),
@@ -792,7 +869,7 @@ elif SECAO == "Por município":
     r1.metric(
         "Parcela repassada", brl(linha[COL_REPASSADA], 2),
         help=f"peso do critério ({PESO:.0%}) × PRE ({linha['pre_real_pct']:.4f}%) × "
-             f"ICMS do período ({brl_curto(ICMS_ESTADO)}).",
+             f"cota-parte dos municípios no período ({brl_curto(COTA_PARTE)}).",
     )
     r2.metric(
         "Parcela cheia", brl(linha[COL_CHEIA], 2),
@@ -833,7 +910,8 @@ elif SECAO == "Por município":
       <b>{linha['pre_real_pct']:.4f}%</b> <span class='passo'>do critério educação</span></li>
   <li><span class='passo'>× peso do critério no IPM ({PESO:.0%}) →</span> contribuição no IPM =
       <b>{linha['contribuicao_ipm_pct']:.4f}%</b></li>
-  <li><span class='passo'>× ICMS repassado no período ({brl_curto(ICMS_ESTADO)}) →</span>
+  <li><span class='passo'>× cota-parte dos municípios no período, os 25% do ICMS
+      ({brl_curto(COTA_PARTE)}) →</span>
       parcela repassada = <b>{brl(linha[COL_REPASSADA], 2)}</b></li>
   <li><span class='passo'>No cenário máximo individual (PRE
       {linha['pre_cheia_pct']:.4f}%) →</span> parcela cheia =
@@ -1033,7 +1111,7 @@ elif SECAO == "Tabela completa":
             ),
             COL_REPASSADA: st.column_config.NumberColumn(
                 "Parcela repassada R$", format="localized",
-                help="Contribuição no IPM × ICMS repassado aos municípios no período.",
+                help="Contribuição no IPM × cota-parte dos municípios no período (25% do ICMS).",
             ),
             COL_CHEIA: st.column_config.NumberColumn(
                 "Parcela cheia R$", format="localized",
@@ -1114,7 +1192,8 @@ elif SECAO == "Metodologia":
 
     section("Como o valor em R$ é obtido",
             "A participação relativa (PRE) vira dinheiro em duas etapas: o peso do "
-            "critério educação dentro do IPM e o ICMS repassado no período.")
+            "critério educação dentro do IPM e a cota-parte dos municípios no período "
+            "(os 25% do ICMS que pertencem a eles, não a arrecadação total do Estado).")
 
     col_cadeia, col_pesos = st.columns(2, gap="medium")
     with col_cadeia:
