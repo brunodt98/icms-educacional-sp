@@ -16,6 +16,7 @@ e mostra, por municipio e no agregado do Estado:
 Rodar com: streamlit run app.py
 """
 
+import base64
 from math import log10
 from pathlib import Path
 
@@ -167,13 +168,17 @@ st.markdown(
       display: flex; align-items: center; gap: .65rem;
       padding-top: .95rem; border-top: 1px solid {NAVY_LINE}; margin-top: .6rem;
   }}
-  .side-foot .sigla {{
-      width: 30px; height: 30px; border-radius: 6px; background: {CRITICAL};
-      display: flex; align-items: center; justify-content: center;
-      font-size: .66rem; font-weight: 600; color: #fff; flex: 0 0 auto;
+  .side-foot .logo-equipe {{
+      flex: 0 0 auto; width: 92px; padding: 5px; border-radius: 8px;
+      background: #fff;
   }}
+  .side-foot .logo-equipe img {{ display: block; width: 100%; }}
+  .side-foot .logo-fatec {{ display: block; width: 78px; margin-bottom: .35rem; }}
   .side-foot .txt {{ font-size: .68rem; color: {ON_NAVY_DIM}; line-height: 1.4; }}
   .side-foot .txt b {{ color: #fff; font-weight: 500; }}
+  .side-devs {{ margin-top: .85rem; }}
+  .side-devs ul {{ list-style: none; margin: 0; padding: 0; }}
+  .side-devs li {{ font-size: .72rem; color: {ON_NAVY}; line-height: 1.55; }}
   /* navegacao: radio virando lista de secoes */
   [data-testid="stSidebar"] [role="radiogroup"] {{ gap: .18rem; }}
   [data-testid="stSidebar"] [role="radiogroup"] label {{
@@ -471,6 +476,22 @@ MARCA_SVG = f"""
         stroke="{NAVY}" stroke-width="1.5"></rect>
 </svg>"""
 
+DESENVOLVEDORES = [
+    "Bruno dos Santos Silva",
+    "Cauã Monteiro da Silva",
+    "Gabriel Oliveira Lima",
+    "John Alan Oliveira Lima",
+    "Julia Paulina Gomes",
+    "Keila Santana do Amaral",
+]
+
+
+def img_base64(nome: str) -> str:
+    """Embute uma imagem de assets/ como data URI, para usar dentro de HTML."""
+    dados = (BASE_DIR / "assets" / nome).read_bytes()
+    return "data:image/png;base64," + base64.b64encode(dados).decode()
+
+
 with st.sidebar:
     st.markdown(
         f"""<div class='side-brand'>{MARCA_SVG}
@@ -524,8 +545,16 @@ with st.sidebar:
     )
 
     st.markdown(
-        "<div class='side-foot'><div class='sigla'>FT</div>"
-        "<div class='txt'>Projeto Integrador V<br><b>FATEC Cotia</b></div></div>",
+        f"<div class='side-foot'>"
+        f"<div class='logo-equipe'><img src='{img_base64('logo_arandu.png')}' alt='AranduEdu'></div>"
+        f"<div><img class='logo-fatec' src='{img_base64('logo_fatec.png')}' alt='Fatec'>"
+        f"<div class='txt'>Projeto Integrador V<br><b>FATEC Cotia</b></div></div></div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<div class='side-devs'><div class='side-lbl'>Desenvolvedores</div><ul>"
+        + "".join(f"<li>{nome}</li>" for nome in DESENVOLVEDORES)
+        + "</ul></div>",
         unsafe_allow_html=True,
     )
 
